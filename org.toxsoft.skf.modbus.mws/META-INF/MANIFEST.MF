@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: USkat MODBUS support MWS module
+Bundle-SymbolicName: org.toxsoft.skf.modbus.mws
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.toxsoft.skf.modbus.mws.Activator
+Bundle-Vendor: toxsoft.org
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.swt,
+ org.eclipse.jface,
+ org.eclipse.e4.core.contexts,
+ org.eclipse.e4.ui.model.workbench,
+ org.toxsoft.extlibs.log4j,
+ org.toxsoft.core.tslib,
+ org.toxsoft.core.log4j,
+ org.toxsoft.core.tsgui,
+ org.toxsoft.core.tsgui.rcp,
+ org.toxsoft.uskat.core,
+ org.toxsoft.uskat.core.gui,
+ org.toxsoft.skf.modbus.lib,
+ org.toxsoft.skf.modbus.gui
+Bundle-RequiredExecutionEnvironment: JavaSE-21
+Automatic-Module-Name: org.toxsoft.skf.modbus.mws
+Bundle-ActivationPolicy: lazy

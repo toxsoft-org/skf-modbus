@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: USkat MODBUS support GUI library
+Bundle-SymbolicName: org.toxsoft.skf.modbus.gui
+Bundle-Vendor: toxsoft.org
+Bundle-Version: 1.0.0.qualifier
+Export-Package: org.toxsoft.skf.modbus.gui
+Bundle-Activator: org.toxsoft.skf.modbus.gui.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.swt,
+ org.eclipse.jface,
+ org.eclipse.e4.core.contexts,
+ org.eclipse.e4.ui.model.workbench,
+ org.toxsoft.extlibs.log4j,
+ org.toxsoft.core.tslib,
+ org.toxsoft.core.log4j,
+ org.toxsoft.core.tsgui,
+ org.toxsoft.core.tsgui.rcp,
+ org.toxsoft.uskat.core,
+ org.toxsoft.uskat.core.gui,
+ org.toxsoft.skf.modbus.lib
+Bundle-RequiredExecutionEnvironment: JavaSE-21
+Automatic-Module-Name: org.toxsoft.skf.modbus.gui
+Bundle-ActivationPolicy: lazy

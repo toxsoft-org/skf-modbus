@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: USkat MODBUS support core library
+Bundle-SymbolicName: org.toxsoft.skf.modbus.lib
+Bundle-Version: 1.0.0.qualifier
+Export-Package: org.toxsoft.skf.modbus.lib,
+ org.toxsoft.skf.modbus.lib.cfg,
+ org.toxsoft.skf.modbus.lib.cfg.device,
+ org.toxsoft.skf.modbus.lib.incub.rwkind
+Require-Bundle: org.toxsoft.core.tslib,
+ org.toxsoft.uskat.core
+Bundle-Vendor: toxsoft.org
+Automatic-Module-Name: org.toxsoft.skf.modbus.lib
+Bundle-RequiredExecutionEnvironment: JavaSE-21
