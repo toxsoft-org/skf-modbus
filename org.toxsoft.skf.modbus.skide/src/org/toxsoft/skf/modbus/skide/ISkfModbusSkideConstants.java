@@ -14,9 +14,10 @@ public interface ISkfModbusSkideConstants {
   // ------------------------------------------------------------------------------------
   // Icons
 
-  String PREFIX_OF_ICON_FIELD_NAME = "ICONID_";          //$NON-NLS-1$
-  String ICONID_APP_MODBUS_INOUT   = "app-modbus-inout"; //$NON-NLS-1$
-  String ICONID_APP_MODBUS_EDITOR  = "app-modbus";       //$NON-NLS-1$
+  String PREFIX_OF_ICON_FIELD_NAME = "ICONID_";           //$NON-NLS-1$
+  String ICONID_APP_MODBUS_INOUT   = "app-modbus-inout";  //$NON-NLS-1$
+  String ICONID_APP_MODBUS_DEVICE  = "app-modbus-device"; //$NON-NLS-1$
+  String ICONID_APP_MODBUS_EDITOR  = "app-modbus";        //$NON-NLS-1$
 
   /**
    * Constants registration.
@@ -25,8 +26,7 @@ public interface ISkfModbusSkideConstants {
    */
   static void init( IEclipseContext aWinContext ) {
     ITsIconManager iconManager = aWinContext.get( ITsIconManager.class );
-    iconManager.registerStdIconByIds( Activator.PLUGIN_ID, ISkfModbusSkideConstants.class,
-        PREFIX_OF_ICON_FIELD_NAME );
+    iconManager.registerStdIconByIds( Activator.PLUGIN_ID, ISkfModbusSkideConstants.class, PREFIX_OF_ICON_FIELD_NAME );
     //
   }
 

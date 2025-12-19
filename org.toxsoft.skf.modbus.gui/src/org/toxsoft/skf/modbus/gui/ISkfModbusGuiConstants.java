@@ -14,10 +14,12 @@ public interface ISkfModbusGuiConstants {
   // ------------------------------------------------------------------------------------
   // Icons
 
-  String PREFIX_OF_ICON_FIELD_NAME = "ICONID_";           //$NON-NLS-1$
-  String ICONID_MODBUS_LOGO        = "modbus-logo";       //$NON-NLS-1$
-  String ICONID_MODBUS_INOUT       = "modbus-inout";      //$NON-NLS-1$
-  String ICONID_MODBUS_INOUT_EDIT  = "modbus-inout-edit"; //$NON-NLS-1$
+  String PREFIX_OF_ICON_FIELD_NAME = "ICONID_";            //$NON-NLS-1$
+  String ICONID_MODBUS_LOGO        = "modbus-logo";        //$NON-NLS-1$
+  String ICONID_MODBUS_INOUT       = "modbus-inout";       //$NON-NLS-1$
+  String ICONID_MODBUS_INOUT_EDIT  = "modbus-inout-edit";  //$NON-NLS-1$
+  String ICONID_MODBUS_DEVICE      = "modbus-device";      //$NON-NLS-1$
+  String ICONID_MODBUS_DEVICE_EDIT = "modbus-device-edit"; //$NON-NLS-1$
 
   /**
    * Constants registration.
