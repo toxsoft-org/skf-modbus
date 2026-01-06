@@ -24,16 +24,16 @@ import org.toxsoft.skf.modbus.gui.e4.services.*;
 import org.toxsoft.skf.modbus.lib.cfg.device.*;
 
 /**
- * M5-model of {@link ModbusDeviceCfg}.
+ * M5-model of {@link MbDeviceCfg}.
  * <p>
- * Lifecycle manager expects {@link ModbusDeviceCfg} as a master object so it allows only listing of existing device
+ * Lifecycle manager expects {@link MbDeviceCfg} as a master object so it allows only listing of existing device
  * registers, no other CRUD operation are allowed. An instance of FIXME LM-name? must be created manually to edit
  * register configurations.
  *
  * @author hazard157
  */
 public class ModbusDeviceCfgM5Model
-    extends M5Model<ModbusDeviceCfg> {
+    extends M5Model<MbDeviceCfg> {
 
   /**
    * The model ID.
@@ -46,18 +46,18 @@ public class ModbusDeviceCfgM5Model
   public static final String FID_REGISTERS = "Registers"; //$NON-NLS-1$
 
   /**
-   * Field {@link ModbusDeviceCfg#id()}
+   * Field {@link MbDeviceCfg#id()}
    */
-  public final IM5AttributeFieldDef<ModbusDeviceCfg> ID = new M5StdFieldDefId<>( //
+  public final IM5AttributeFieldDef<MbDeviceCfg> ID = new M5StdFieldDefId<>( //
       TSID_NAME, STR_MODBUS_DEVICE_CFG_ID, //
       TSID_DESCRIPTION, STR_MODBUS_DEVICE_CFG_ID_D, //
       M5_OPID_FLAGS, avInt( M5FF_COLUMN ) //
   );
 
   /**
-   * Field {@link ModbusDeviceCfg#registerCfs()}
+   * Field {@link MbDeviceCfg#registerCfs()}
    */
-  public final IM5MultiModownFieldDef<ModbusDeviceCfg, ModbusRegisterCfg> REGIISTERS =
+  public final IM5MultiModownFieldDef<MbDeviceCfg, MbRegisterCfg> REGIISTERS =
       new M5MultiModownFieldDef<>( FID_REGISTERS, ModbusRegisterCfgM5Model.MODEL_ID ) {
 
         @Override
@@ -67,7 +67,7 @@ public class ModbusDeviceCfgM5Model
           params().setBool( IValedControlConstants.OPDEF_NO_FIELD_LABEL, true );
         }
 
-        protected IList<ModbusRegisterCfg> doGetFieldValue( ModbusDeviceCfg aEntity ) {
+        protected IList<MbRegisterCfg> doGetFieldValue( MbDeviceCfg aEntity ) {
           return aEntity.registerCfs().values();
         }
 
@@ -77,12 +77,12 @@ public class ModbusDeviceCfgM5Model
    * Constructor.
    */
   public ModbusDeviceCfgM5Model() {
-    super( MODEL_ID, ModbusDeviceCfg.class );
+    super( MODEL_ID, MbDeviceCfg.class );
     setNameAndDescription( STR_M5M_MODBUS_DEVICE_CFG, STR_M5M_MODBUS_DEVICE_CFG_D );
-    IListEdit<IM5FieldDef<ModbusDeviceCfg, ?>> llFields = new ElemArrayList<>();
+    IListEdit<IM5FieldDef<MbDeviceCfg, ?>> llFields = new ElemArrayList<>();
     llFields.add( ID );
-    for( IDataDef d : IModbusDeviceCfgConstants.ALL_DEVICE_OPDEFS ) {
-      M5StdFieldDefParamAttr<ModbusDeviceCfg> fdef = new M5StdFieldDefParamAttr<>( d );
+    for( IDataDef d : IMbDeviceCfgConstants.MB_DEV_ALL_OPDEFS ) {
+      M5StdFieldDefParamAttr<MbDeviceCfg> fdef = new M5StdFieldDefParamAttr<>( d );
       switch( fdef.id() ) {
         case TSID_NAME: {
           fdef.setFlags( M5FF_COLUMN );
@@ -100,15 +100,15 @@ public class ModbusDeviceCfgM5Model
     setPanelCreator( new M5DefaultPanelCreator<>() {
 
       @Override
-      protected IM5CollectionPanel<ModbusDeviceCfg> doCreateCollViewerPanel( ITsGuiContext aContext,
-          IM5ItemsProvider<ModbusDeviceCfg> aItemsProvider ) {
+      protected IM5CollectionPanel<MbDeviceCfg> doCreateCollViewerPanel( ITsGuiContext aContext,
+          IM5ItemsProvider<MbDeviceCfg> aItemsProvider ) {
         OPDEF_DETAILS_PANE_PLACE.setValue( aContext.params(), avValobj( EBorderLayoutPlacement.EAST ) );
         return super.doCreateCollViewerPanel( aContext, aItemsProvider );
       }
 
       @Override
-      protected IM5CollectionPanel<ModbusDeviceCfg> doCreateCollEditPanel( ITsGuiContext aContext,
-          IM5ItemsProvider<ModbusDeviceCfg> aItemsProvider, IM5LifecycleManager<ModbusDeviceCfg> aLifecycleManager ) {
+      protected IM5CollectionPanel<MbDeviceCfg> doCreateCollEditPanel( ITsGuiContext aContext,
+          IM5ItemsProvider<MbDeviceCfg> aItemsProvider, IM5LifecycleManager<MbDeviceCfg> aLifecycleManager ) {
         IModbusDeviceCfgRegistry devRegistry = IModbusDeviceCfgRegistry.class.cast( aLifecycleManager.master() );
         CompoundTsActionSetProvider asp = new CompoundTsActionSetProvider();
         asp.addHandler( new AspModbusDeviceCollExpImp( aContext, devRegistry ) );
@@ -121,7 +121,7 @@ public class ModbusDeviceCfgM5Model
   }
 
   @Override
-  protected IM5LifecycleManager<ModbusDeviceCfg> doCreateLifecycleManager( Object aMaster ) {
+  protected IM5LifecycleManager<MbDeviceCfg> doCreateLifecycleManager( Object aMaster ) {
     return new ModbusDeviceCfgM5LifecycleManager( this, IModbusDeviceCfgRegistry.class.cast( aMaster ) );
   }
 

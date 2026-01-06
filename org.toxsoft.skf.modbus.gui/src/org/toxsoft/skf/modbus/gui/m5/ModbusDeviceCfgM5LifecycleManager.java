@@ -20,9 +20,9 @@ import org.toxsoft.skf.modbus.lib.cfg.device.*;
  * @author hazard157
  */
 class ModbusDeviceCfgM5LifecycleManager
-    extends M5LifecycleManager<ModbusDeviceCfg, IModbusDeviceCfgRegistry> {
+    extends M5LifecycleManager<MbDeviceCfg, IModbusDeviceCfgRegistry> {
 
-  public ModbusDeviceCfgM5LifecycleManager( IM5Model<ModbusDeviceCfg> aModel, IModbusDeviceCfgRegistry aMaster ) {
+  public ModbusDeviceCfgM5LifecycleManager( IM5Model<MbDeviceCfg> aModel, IModbusDeviceCfgRegistry aMaster ) {
     super( aModel, true, true, true, true, aMaster );
     TsNullArgumentRtException.checkNull( aMaster );
   }
@@ -31,15 +31,15 @@ class ModbusDeviceCfgM5LifecycleManager
   // implementation
   //
 
-  private static ModbusDeviceCfg make( IM5Bunch<ModbusDeviceCfg> aValues ) {
+  private static MbDeviceCfg make( IM5Bunch<MbDeviceCfg> aValues ) {
     String id = aValues.getAsAv( FID_ID ).asString();
     IOptionSetEdit p = new OptionSet();
-    for( IDataDef dd : IModbusDeviceCfgConstants.ALL_DEVICE_OPDEFS ) {
+    for( IDataDef dd : IMbDeviceCfgConstants.MB_DEV_ALL_OPDEFS ) {
       IAtomicValue av = aValues.getAsAv( dd.id() );
       p.setValue( dd, av );
     }
-    IList<ModbusRegisterCfg> llRegs = aValues.get( ModbusDeviceCfgM5Model.FID_REGISTERS );
-    return new ModbusDeviceCfg( id, p, llRegs );
+    IList<MbRegisterCfg> llRegs = aValues.get( ModbusDeviceCfgM5Model.FID_REGISTERS );
+    return new MbDeviceCfg( id, p, llRegs );
 
   }
 
@@ -48,43 +48,43 @@ class ModbusDeviceCfgM5LifecycleManager
   //
 
   @Override
-  protected ValidationResult doBeforeCreate( IM5Bunch<ModbusDeviceCfg> aValues ) {
-    ModbusDeviceCfg cfg = make( aValues );
+  protected ValidationResult doBeforeCreate( IM5Bunch<MbDeviceCfg> aValues ) {
+    MbDeviceCfg cfg = make( aValues );
     return master().svs().validator().canAddDeviceCfg( cfg );
   }
 
   @Override
-  protected ModbusDeviceCfg doCreate( IM5Bunch<ModbusDeviceCfg> aValues ) {
-    ModbusDeviceCfg cfg = make( aValues );
+  protected MbDeviceCfg doCreate( IM5Bunch<MbDeviceCfg> aValues ) {
+    MbDeviceCfg cfg = make( aValues );
     master().addDeviceCfg( cfg );
     return cfg;
   }
 
   @Override
-  protected ValidationResult doBeforeEdit( IM5Bunch<ModbusDeviceCfg> aValues ) {
-    ModbusDeviceCfg cfg = make( aValues );
+  protected ValidationResult doBeforeEdit( IM5Bunch<MbDeviceCfg> aValues ) {
+    MbDeviceCfg cfg = make( aValues );
     return master().svs().validator().canReplaceDeviceCfg( aValues.originalEntity().id(), cfg );
   }
 
   @Override
-  protected ModbusDeviceCfg doEdit( IM5Bunch<ModbusDeviceCfg> aValues ) {
-    ModbusDeviceCfg cfg = make( aValues );
+  protected MbDeviceCfg doEdit( IM5Bunch<MbDeviceCfg> aValues ) {
+    MbDeviceCfg cfg = make( aValues );
     master().replaceDeviceCfg( aValues.originalEntity().id(), cfg );
     return cfg;
   }
 
   @Override
-  protected ValidationResult doBeforeRemove( ModbusDeviceCfg aEntity ) {
+  protected ValidationResult doBeforeRemove( MbDeviceCfg aEntity ) {
     return master().svs().validator().canRemoveDeviceCfg( aEntity.id() );
   }
 
   @Override
-  protected void doRemove( ModbusDeviceCfg aEntity ) {
+  protected void doRemove( MbDeviceCfg aEntity ) {
     master().removeDeviceCfg( aEntity.id() );
   }
 
   @Override
-  protected IList<ModbusDeviceCfg> doListEntities() {
+  protected IList<MbDeviceCfg> doListEntities() {
     return master().list();
   }
 

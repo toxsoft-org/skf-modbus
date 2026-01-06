@@ -47,8 +47,8 @@ public class SkideUnitModbusDeviceRegistry
     ModbusDeviceCfgRegistry devRegistry = tsContext().get( ModbusDeviceCfgRegistry.class );
     IKeepablesStorage unitStorage = plEnv().unitStorage( UNIT_ID );
     try {
-      IList<ModbusDeviceCfg> llDevCfgs = unitStorage.readColl( SECTID_MODBUS_DEVICE_REGISTRY, ModbusDeviceCfg.KEEPER );
-      IStridablesList<ModbusDeviceCfg> slDevCfgs = new StridablesList<>( llDevCfgs );
+      IList<MbDeviceCfg> llDevCfgs = unitStorage.readColl( SECTID_MODBUS_DEVICE_REGISTRY, MbDeviceCfg.KEEPER );
+      IStridablesList<MbDeviceCfg> slDevCfgs = new StridablesList<>( llDevCfgs );
       devRegistry.fillRegistry( slDevCfgs );
     }
     catch( Exception ex ) {
@@ -56,7 +56,7 @@ public class SkideUnitModbusDeviceRegistry
     }
     // listen to changes in registry and save to storage
     devRegistry.genericChangeEventer().addListener( aSource -> //
-    unitStorage.writeColl( SECTID_MODBUS_DEVICE_REGISTRY, devRegistry.list(), ModbusDeviceCfg.KEEPER, true ) //
+    unitStorage.writeColl( SECTID_MODBUS_DEVICE_REGISTRY, devRegistry.list(), MbDeviceCfg.KEEPER, true ) //
     );
   }
 

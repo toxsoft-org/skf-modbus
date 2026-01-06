@@ -14,21 +14,21 @@ public interface IModbusDeviceCfgRegistryValidator {
   /**
    * Checks if new new device configuration can be added.
    *
-   * @param aCfg {@link ModbusDeviceCfg} - configuration to add
+   * @param aCfg {@link MbDeviceCfg} - configuration to add
    * @return {@link ValidationResult} - the check result
    * @throws TsNullArgumentRtException any argument = <code>null</code>
    */
-  ValidationResult canAddDeviceCfg( ModbusDeviceCfg aCfg );
+  ValidationResult canAddDeviceCfg( MbDeviceCfg aCfg );
 
   /**
    * Checks if existing device configuration can be replaced.
    *
    * @param aDevId String - device configuration ID to be replaced
-   * @param aCfg {@link ModbusDeviceCfg} - new configuration
+   * @param aCfg {@link MbDeviceCfg} - new configuration
    * @return {@link ValidationResult} - the check result
    * @throws TsNullArgumentRtException any argument = <code>null</code>
    */
-  ValidationResult canReplaceDeviceCfg( String aDevId, ModbusDeviceCfg aCfg );
+  ValidationResult canReplaceDeviceCfg( String aDevId, MbDeviceCfg aCfg );
 
   /**
    * Checks if device configuration can be removed.

@@ -49,9 +49,9 @@ class AspModbusDeviceCollExpImp
       return;
     }
     // read configurations from the file
-    IList<ModbusDeviceCfg> rawList;
+    IList<MbDeviceCfg> rawList;
     try {
-      rawList = ModbusDeviceCfg.KEEPER.readColl( file );
+      rawList = MbDeviceCfg.KEEPER.readColl( file );
       lastReadPath = file.getAbsolutePath();
       if( lastWritePath.isBlank() ) {
         lastWritePath = lastReadPath;
@@ -63,11 +63,11 @@ class AspModbusDeviceCollExpImp
       return;
     }
     // FIXME here we need StridablesCollImportGui
-    AbstractStridablesCollImportGui<ModbusDeviceCfg> importGui =
+    AbstractStridablesCollImportGui<MbDeviceCfg> importGui =
         new AbstractStridablesCollImportGui<>( new TsGuiContext( tsContext ) ) {
 
           @Override
-          protected void doImportElements( IStridablesList<ModbusDeviceCfg> aColl ) {
+          protected void doImportElements( IStridablesList<MbDeviceCfg> aColl ) {
 
             // TODO Auto-generated method stub
 
@@ -83,7 +83,7 @@ class AspModbusDeviceCollExpImp
       return;
     }
     try {
-      ModbusDeviceCfg.KEEPER.writeColl( file, devRegistry.list(), true );
+      MbDeviceCfg.KEEPER.writeColl( file, devRegistry.list(), true );
       lastWritePath = file.getAbsolutePath();
       if( lastReadPath.isBlank() ) {
         lastReadPath = lastWritePath;

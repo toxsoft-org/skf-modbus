@@ -15,14 +15,14 @@ import org.toxsoft.skf.modbus.lib.mbspec.*;
 /**
  * LM for {@link ModbusRegisterCfgM5Model}.
  * <p>
- * THis LM is intended only to list {@link ModbusDeviceCfg#registerCfs()}, no other CRUD operations are allowed.
+ * THis LM is intended only to list {@link MbDeviceCfg#registerCfs()}, no other CRUD operations are allowed.
  *
  * @author hazard157
  */
 class ModbusRegisterCfgM5LifecycleManager
-    extends M5LifecycleManager<ModbusRegisterCfg, Object> {
+    extends M5LifecycleManager<MbRegisterCfg, Object> {
 
-  public ModbusRegisterCfgM5LifecycleManager( IM5Model<ModbusRegisterCfg> aModel ) {
+  public ModbusRegisterCfgM5LifecycleManager( IM5Model<MbRegisterCfg> aModel ) {
     super( aModel, true, true, true, false, null );
   }
 
@@ -30,32 +30,32 @@ class ModbusRegisterCfgM5LifecycleManager
   // implementation
   //
 
-  private static ValidationResult canMakeCfg( IM5Bunch<ModbusRegisterCfg> aValues ) {
+  private static ValidationResult canMakeCfg( IM5Bunch<MbRegisterCfg> aValues ) {
     int regNo = aValues.getAsAv( FID_REG_NO ).asInt();
     EModbusRegisterKind kind = aValues.getAsAv( FID_KIND ).asValobj();
     IOptionSetEdit params = new OptionSet();
-    OptionSetUtils.initOptionSet( params, IModbusDeviceCfgConstants.ALL_REGISTER_OPDEFS );
-    for( IDataDef dd : IModbusDeviceCfgConstants.ALL_REGISTER_OPDEFS ) {
+    OptionSetUtils.initOptionSet( params, IMbDeviceCfgConstants.MB_REG_ALL_OPDEFS );
+    for( IDataDef dd : IMbDeviceCfgConstants.MB_REG_ALL_OPDEFS ) {
       if( aValues.hasField( dd.id() ) ) {
         IAtomicValue av = aValues.getAsAv( dd.id() );
         params.setValue( dd, av );
       }
     }
-    return ModbusRegisterCfg.canCreate( regNo, kind, params );
+    return MbRegisterCfg.canCreate( regNo, kind, params );
   }
 
-  private static ModbusRegisterCfg makeCfg( IM5Bunch<ModbusRegisterCfg> aValues ) {
+  private static MbRegisterCfg makeCfg( IM5Bunch<MbRegisterCfg> aValues ) {
     int regNo = aValues.getAsAv( FID_REG_NO ).asInt();
     EModbusRegisterKind kind = aValues.getAsAv( FID_KIND ).asValobj();
     IOptionSetEdit params = new OptionSet();
-    OptionSetUtils.initOptionSet( params, IModbusDeviceCfgConstants.ALL_REGISTER_OPDEFS );
-    for( IDataDef dd : IModbusDeviceCfgConstants.ALL_REGISTER_OPDEFS ) {
+    OptionSetUtils.initOptionSet( params, IMbDeviceCfgConstants.MB_REG_ALL_OPDEFS );
+    for( IDataDef dd : IMbDeviceCfgConstants.MB_REG_ALL_OPDEFS ) {
       if( aValues.hasField( dd.id() ) ) {
         IAtomicValue av = aValues.getAsAv( dd.id() );
         params.setValue( dd, av );
       }
     }
-    return new ModbusRegisterCfg( regNo, kind, params );
+    return new MbRegisterCfg( regNo, kind, params );
   }
 
   // ------------------------------------------------------------------------------------
@@ -63,32 +63,32 @@ class ModbusRegisterCfgM5LifecycleManager
   //
 
   @Override
-  protected ValidationResult doBeforeCreate( IM5Bunch<ModbusRegisterCfg> aValues ) {
+  protected ValidationResult doBeforeCreate( IM5Bunch<MbRegisterCfg> aValues ) {
     return canMakeCfg( aValues );
   }
 
   @Override
-  protected ModbusRegisterCfg doCreate( IM5Bunch<ModbusRegisterCfg> aValues ) {
+  protected MbRegisterCfg doCreate( IM5Bunch<MbRegisterCfg> aValues ) {
     return makeCfg( aValues );
   }
 
   @Override
-  protected ValidationResult doBeforeEdit( IM5Bunch<ModbusRegisterCfg> aValues ) {
+  protected ValidationResult doBeforeEdit( IM5Bunch<MbRegisterCfg> aValues ) {
     return canMakeCfg( aValues );
   }
 
   @Override
-  protected ModbusRegisterCfg doEdit( IM5Bunch<ModbusRegisterCfg> aValues ) {
+  protected MbRegisterCfg doEdit( IM5Bunch<MbRegisterCfg> aValues ) {
     return makeCfg( aValues );
   }
 
   @Override
-  protected ValidationResult doBeforeRemove( ModbusRegisterCfg aEntity ) {
+  protected ValidationResult doBeforeRemove( MbRegisterCfg aEntity ) {
     return ValidationResult.SUCCESS;
   }
 
   @Override
-  protected void doRemove( ModbusRegisterCfg aEntity ) {
+  protected void doRemove( MbRegisterCfg aEntity ) {
     // nop
   }
 

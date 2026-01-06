@@ -39,7 +39,7 @@ public class SkidePluginModbus
   @Override
   protected void doCreateUnits( ITsGuiContext aContext, IStridablesListEdit<ISkideUnit> aUnitsList ) {
     // declare units
-    aUnitsList.add( new SkideUnitConfigureImportBridge( aContext, this ) );
+    aUnitsList.add( new SkideUnitConfigureBridge( aContext, this ) );
     aUnitsList.add( new SkideUnitModbusDeviceRegistry( aContext, this ) );
   }
 

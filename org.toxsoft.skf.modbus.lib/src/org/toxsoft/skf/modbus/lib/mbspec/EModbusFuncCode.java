@@ -13,7 +13,7 @@ import org.toxsoft.core.tslib.coll.primtypes.impl.*;
 import org.toxsoft.core.tslib.utils.errors.*;
 
 /**
- * A subset of the MODBUS public function code as described in section 5.1 of the MODBUS specification.
+ * A subset of the MODBUS public function codes as described in section 5.1 of the MODBUS specification.
  *
  * @author hazard157
  */

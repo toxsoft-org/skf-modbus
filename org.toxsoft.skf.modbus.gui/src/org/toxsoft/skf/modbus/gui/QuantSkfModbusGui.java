@@ -23,7 +23,7 @@ public class QuantSkfModbusGui
    */
   public QuantSkfModbusGui() {
     super( QuantSkfModbusGui.class.getSimpleName() );
-    ModbusLibUtils.initialize();
+    SkfModbusLibUtils.initialize();
     TsValobjUtils.registerKeeper( EResolveStrategy.KEEPER_ID, EResolveStrategy.KEEPER );
   }
 

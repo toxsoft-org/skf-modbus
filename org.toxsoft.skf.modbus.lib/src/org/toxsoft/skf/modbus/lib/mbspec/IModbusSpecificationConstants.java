@@ -77,7 +77,7 @@ public interface IModbusSpecificationConstants {
   IntRange MB_REG_ADDRESS_RANGE = new IntRange( 0, 65535 );
 
   /**
-   * How many coils may be read by function #1. - read several coils at once.
+   * How many coils may be read by function {@link #MB_FC_01_READ_COILS} - read several coils at once.
    */
   IntRange MB_COILS_AT_ONCE = new IntRange( 1, 2000 );
 

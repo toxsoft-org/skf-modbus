@@ -11,7 +11,7 @@ import org.toxsoft.skide.core.api.impl.*;
  *
  * @author max
  */
-public class SkidePanelConfigureImportBridge
+public class SkidePanelConfigureBridge
     extends AbstractSkideUnitPanel {
 
   /**
@@ -20,14 +20,14 @@ public class SkidePanelConfigureImportBridge
    * @param aContext ITsGuiContext - context.
    * @param aUnit ISkideUnit - unit.
    */
-  public SkidePanelConfigureImportBridge( ITsGuiContext aContext, ISkideUnit aUnit ) {
+  public SkidePanelConfigureBridge( ITsGuiContext aContext, ISkideUnit aUnit ) {
     super( aContext, aUnit );
   }
 
   @Override
   protected Control doCreateControl( Composite aParent ) {
 
-    // TODO SkidePanelConfigureImportBridge.doCreateControl()
+    // TODO SkidePanelConfigureBridge.doCreateControl()
 
     Label l = new Label( aParent, SWT.BORDER );
     l.setText( getClass().getSimpleName() );

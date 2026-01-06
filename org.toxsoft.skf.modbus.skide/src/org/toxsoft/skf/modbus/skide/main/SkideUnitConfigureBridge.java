@@ -13,22 +13,22 @@ import org.toxsoft.skide.core.api.*;
 import org.toxsoft.skide.core.api.impl.*;
 
 /**
- * SkiDE unit: unit Modbus bridge cfg - mapping of registeres and s5 entities.
+ * SkiDE unit: MODBUS bridge configuration.
  *
  * @author max
  */
-public class SkideUnitConfigureImportBridge
+public class SkideUnitConfigureBridge
     extends AbstractSkideUnit {
 
   /**
    * The plugin ID.
    */
-  public static final String UNIT_ID = SKIDE_FULL_ID + ".unit.skf.modbus.import"; //$NON-NLS-1$
+  public static final String UNIT_ID = SKIDE_FULL_ID + ".unit.skf.modbus.bridge"; //$NON-NLS-1$
 
-  SkideUnitConfigureImportBridge( ITsGuiContext aContext, AbstractSkidePlugin aCreator ) {
+  SkideUnitConfigureBridge( ITsGuiContext aContext, AbstractSkidePlugin aCreator ) {
     super( UNIT_ID, OptionSetUtils.createOpSet( //
-        TSID_NAME, STR_UNIT_SKF_MODBUS_IMPORT, //
-        TSID_DESCRIPTION, STR_UNIT_SKF_MODBUS_IMPORT_D, //
+        TSID_NAME, STR_UNIT_SKF_MODBUS_BRIDGE, //
+        TSID_DESCRIPTION, STR_UNIT_SKF_MODBUS_BRIDGE_D, //
         OPDEF_SKIDE_UNIT_CATEGORY, UCATEGID_EXTERNAL_SYSTEMS, //
         TSID_ICON_ID, ICONID_APP_MODBUS_INOUT //
     ), aContext, aCreator );
@@ -37,7 +37,7 @@ public class SkideUnitConfigureImportBridge
 
   @Override
   protected AbstractSkideUnitPanel doCreateUnitPanel( ITsGuiContext aContext ) {
-    return new SkidePanelConfigureImportBridge( aContext, this );
+    return new SkidePanelConfigureBridge( aContext, this );
   }
 
 }

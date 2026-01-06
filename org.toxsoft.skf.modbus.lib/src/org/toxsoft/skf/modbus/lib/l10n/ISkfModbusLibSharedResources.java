@@ -1,5 +1,6 @@
 package org.toxsoft.skf.modbus.lib.l10n;
 
+import org.toxsoft.skf.modbus.lib.cfg.bridge.*;
 import org.toxsoft.skf.modbus.lib.cfg.device.*;
 import org.toxsoft.skf.modbus.lib.mbspec.*;
 
@@ -31,6 +32,30 @@ public interface ISkfModbusLibSharedResources {
   String STR_EMRK_HOLD_REG_D = Messages.getString( "EModbusRegisterKind.STR_HOLD_REG_D" ); //$NON-NLS-1$
 
   /**
+   * {@link IMbBridgeCfgConstants}
+   */
+  String STR_MBBCC_BRI_NAME             = Messages.getString( "Bridge.STR_MBBCC_BRI_NAME" );             //$NON-NLS-1$
+  String STR_MBBCC_BRI_NAME_D           = Messages.getString( "Bridge.STR_MBBCC_BRI_NAME_D" );           //$NON-NLS-1$
+  String STR_MBBCC_BRI_DESCRIPTION      = Messages.getString( "Bridge.STR_MBBCC_BRI_DESCRIPTION" );      //$NON-NLS-1$
+  String STR_MBBCC_BRI_DESCRIPTION_D    = Messages.getString( "Bridge.STR_MBBCC_BRI_DESCRIPTION_D" );    //$NON-NLS-1$
+  String STR_MBBCC_BUS_NAME             = Messages.getString( "Bridge.STR_MBBCC_BUS_NAME" );             //$NON-NLS-1$
+  String STR_MBBCC_BUS_NAME_D           = Messages.getString( "Bridge.STR_MBBCC_BUS_NAME_D" );           //$NON-NLS-1$
+  String STR_MBBCC_BUS_DESCRIPTION      = Messages.getString( "Bridge.STR_MBBCC_BUS_DESCRIPTION" );      //$NON-NLS-1$
+  String STR_MBBCC_BUS_DESCRIPTION_D    = Messages.getString( "Bridge.STR_MBBCC_BUS_DESCRIPTION_D" );    //$NON-NLS-1$
+  String STR_MBBCC_BUS_IS_RTU           = Messages.getString( "Bridge.STR_MBBCC_BUS_IS_RTU" );           //$NON-NLS-1$
+  String STR_MBBCC_BUS_IS_RTU_D         = Messages.getString( "Bridge.STR_MBBCC_BUS_IS_RTU_D" );         //$NON-NLS-1$
+  String STR_MBBCC_NOD_NAME             = Messages.getString( "Bridge.STR_MBBCC_NOD_NAME" );             //$NON-NLS-1$
+  String STR_MBBCC_NOD_NAME_D           = Messages.getString( "Bridge.STR_MBBCC_NOD_NAME_D" );           //$NON-NLS-1$
+  String STR_MBBCC_NOD_DESCRIPTION      = Messages.getString( "Bridge.STR_MBBCC_NOD_DESCRIPTION" );      //$NON-NLS-1$
+  String STR_MBBCC_NOD_DESCRIPTION_D    = Messages.getString( "Bridge.STR_MBBCC_NOD_DESCRIPTION_D" );    //$NON-NLS-1$
+  String STR_MBBCC_NOD_TCP_IP_ADDRESS   = Messages.getString( "Bridge.STR_MBBCC_NOD_TCP_IP_ADDRESS" );   //$NON-NLS-1$
+  String STR_MBBCC_NOD_TCP_IP_ADDRESS_D = Messages.getString( "Bridge.STR_MBBCC_NOD_TCP_IP_ADDRESS_D" ); //$NON-NLS-1$
+  String STR_MBBCC_NOD_TCP_PORT_NO      = Messages.getString( "Bridge.STR_MBBCC_NOD_TCP_PORT_NO" );      //$NON-NLS-1$
+  String STR_MBBCC_NOD_TCP_PORT_NO_D    = Messages.getString( "Bridge.STR_MBBCC_NOD_TCP_PORT_NO_D" );    //$NON-NLS-1$
+  String STR_MBBCC_NOD_RTU_DEV_ADDR     = Messages.getString( "Bridge.STR_MBBCC_NOD_RTU_DEV_ADDR" );     //$NON-NLS-1$
+  String STR_MBBCC_NOD_RTU_DEV_ADDR_D   = Messages.getString( "Bridge.STR_MBBCC_NOD_RTU_DEV_ADDR_D" );   //$NON-NLS-1$
+
+  /**
    * {@link EModbusFuncCode}
    */
   String STR_MFC_01_READ_COILS       = Messages.getString( "EModbusFuncCode.STR_MFC_01_READ_COILS" );       //$NON-NLS-1$
@@ -51,7 +76,7 @@ public interface ISkfModbusLibSharedResources {
   String STR_MFC_15_WRITE_COILS_D    = Messages.getString( "EModbusFuncCode.STR_MFC_15_WRITE_COILS_D" );    //$NON-NLS-1$
 
   /**
-   * {@link IModbusDeviceCfgConstants}
+   * {@link IMbDeviceCfgConstants}
    */
   String STR_MSDCC_DEVICE_NAME            = Messages.getString( "MSDCC.STR_MSDCC_DEVICE_NAME" );            //$NON-NLS-1$
   String STR_MSDCC_DEVICE_NAME_D          = Messages.getString( "MSDCC.STR_MSDCC_DEVICE_NAME_D" );          //$NON-NLS-1$

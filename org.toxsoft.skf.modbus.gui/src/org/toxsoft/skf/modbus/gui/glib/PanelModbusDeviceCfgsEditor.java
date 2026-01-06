@@ -19,10 +19,10 @@ import org.toxsoft.skf.modbus.lib.cfg.device.*;
  * @author hazard157
  */
 public class PanelModbusDeviceCfgsEditor
-    extends TsStdEventsProducerPanel<ModbusDeviceCfg> {
+    extends TsStdEventsProducerPanel<MbDeviceCfg> {
 
-  private final IM5Model<ModbusDeviceCfg>           model;
-  private final IM5CollectionPanel<ModbusDeviceCfg> panel;
+  private final IM5Model<MbDeviceCfg>           model;
+  private final IM5CollectionPanel<MbDeviceCfg> panel;
 
   private IModbusDeviceCfgRegistry devRegistry = null;
 
@@ -44,9 +44,9 @@ public class PanelModbusDeviceCfgsEditor
       IModbusDeviceCfgRegistry aDevRegistry ) {
     super( aParent, aContext );
     devRegistry = aDevRegistry != null ? aDevRegistry : tsContext().find( IModbusDeviceCfgRegistry.class );
-    model = m5().getModel( ModbusDeviceCfgM5Model.MODEL_ID, ModbusDeviceCfg.class );
-    IM5LifecycleManager<ModbusDeviceCfg> lm = null;
-    IM5ItemsProvider<ModbusDeviceCfg> ip = null;
+    model = m5().getModel( ModbusDeviceCfgM5Model.MODEL_ID, MbDeviceCfg.class );
+    IM5LifecycleManager<MbDeviceCfg> lm = null;
+    IM5ItemsProvider<MbDeviceCfg> ip = null;
     if( devRegistry != null ) {
       lm = model.getLifecycleManager( devRegistry );
       ip = lm.itemsProvider();
@@ -70,12 +70,12 @@ public class PanelModbusDeviceCfgsEditor
   //
 
   @Override
-  public ModbusDeviceCfg selectedItem() {
+  public MbDeviceCfg selectedItem() {
     return panel.selectedItem();
   }
 
   @Override
-  public void setSelectedItem( ModbusDeviceCfg aItem ) {
+  public void setSelectedItem( MbDeviceCfg aItem ) {
     panel.setSelectedItem( aItem );
   }
 

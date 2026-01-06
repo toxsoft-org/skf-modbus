@@ -34,7 +34,7 @@ public class ModbusDeviceCfgRegistry
     }
 
     @Override
-    public ValidationResult canAddDeviceCfg( ModbusDeviceCfg aCfg ) {
+    public ValidationResult canAddDeviceCfg( MbDeviceCfg aCfg ) {
       ValidationResult vr = ValidationResult.SUCCESS;
       for( IModbusDeviceCfgRegistryValidator v : validatorsList() ) {
         vr = ValidationResult.firstNonOk( vr, v.canAddDeviceCfg( aCfg ) );
@@ -46,7 +46,7 @@ public class ModbusDeviceCfgRegistry
     }
 
     @Override
-    public ValidationResult canReplaceDeviceCfg( String aDevId, ModbusDeviceCfg aCfg ) {
+    public ValidationResult canReplaceDeviceCfg( String aDevId, MbDeviceCfg aCfg ) {
       ValidationResult vr = ValidationResult.SUCCESS;
       for( IModbusDeviceCfgRegistryValidator v : validatorsList() ) {
         vr = ValidationResult.firstNonOk( vr, v.canReplaceDeviceCfg( aDevId, aCfg ) );
@@ -74,7 +74,7 @@ public class ModbusDeviceCfgRegistry
   private final IModbusDeviceCfgRegistryValidator builtinValidator = new IModbusDeviceCfgRegistryValidator() {
 
     @Override
-    public ValidationResult canAddDeviceCfg( ModbusDeviceCfg aCfg ) {
+    public ValidationResult canAddDeviceCfg( MbDeviceCfg aCfg ) {
       TsNullArgumentRtException.checkNull( aCfg );
       if( cfgsList.hasKey( aCfg.id() ) ) {
         return ValidationResult.error( FMT_ERR_MODBUS_DEV_ID_ALREADY_EXISTS, aCfg.id() );
@@ -83,7 +83,7 @@ public class ModbusDeviceCfgRegistry
     }
 
     @Override
-    public ValidationResult canReplaceDeviceCfg( String aDevId, ModbusDeviceCfg aCfg ) {
+    public ValidationResult canReplaceDeviceCfg( String aDevId, MbDeviceCfg aCfg ) {
       TsNullArgumentRtException.checkNulls( aDevId, aCfg );
       if( !cfgsList.hasKey( aDevId ) ) {
         return ValidationResult.error( FMT_ERR_MODBUS_DEV_ID_NOT_EXISTS, aDevId );
@@ -108,7 +108,7 @@ public class ModbusDeviceCfgRegistry
   private final GenericChangeEventer eventer;
   private final ValidationSupport    svs = new ValidationSupport();
 
-  private final IStridablesListBasicEdit<ModbusDeviceCfg> cfgsList = new SortedStridablesList<>();
+  private final IStridablesListBasicEdit<MbDeviceCfg> cfgsList = new SortedStridablesList<>();
 
   /**
    * Constructor.
@@ -144,19 +144,19 @@ public class ModbusDeviceCfgRegistry
   //
 
   @Override
-  public IStridablesList<ModbusDeviceCfg> list() {
+  public IStridablesList<MbDeviceCfg> list() {
     return cfgsList;
   }
 
   @Override
-  public void addDeviceCfg( ModbusDeviceCfg aCfg ) {
+  public void addDeviceCfg( MbDeviceCfg aCfg ) {
     TsValidationFailedRtException.checkError( svs.validator().canAddDeviceCfg( aCfg ) );
     cfgsList.add( aCfg );
     eventer.fireChangeEvent();
   }
 
   @Override
-  public void replaceDeviceCfg( String aDevId, ModbusDeviceCfg aCfg ) {
+  public void replaceDeviceCfg( String aDevId, MbDeviceCfg aCfg ) {
     TsValidationFailedRtException.checkError( svs.validator().canReplaceDeviceCfg( aDevId, aCfg ) );
     cfgsList.removeById( aDevId );
     cfgsList.add( aCfg );
@@ -184,9 +184,9 @@ public class ModbusDeviceCfgRegistry
    * Method is intended to fill registry at application startup from the external storage. Method does <b>not</b> fires
    * an {@link #genericChangeEventer()} event.
    *
-   * @param aConfigurations {@link IStridablesList}&lt;{@link ModbusDeviceCfg}&gt; - list of device configuration
+   * @param aConfigurations {@link IStridablesList}&lt;{@link MbDeviceCfg}&gt; - list of device configuration
    */
-  public void fillRegistry( IStridablesList<ModbusDeviceCfg> aConfigurations ) {
+  public void fillRegistry( IStridablesList<MbDeviceCfg> aConfigurations ) {
     cfgsList.setAll( aConfigurations );
   }
 

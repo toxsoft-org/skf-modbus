@@ -26,12 +26,12 @@ import org.toxsoft.skf.modbus.lib.cfg.device.*;
 import org.toxsoft.skf.modbus.lib.mbspec.*;
 
 /**
- * M5-model of {@link ModbusRegisterCfg}.
+ * M5-model of {@link MbRegisterCfg}.
  *
  * @author hazard157
  */
 public class ModbusRegisterCfgM5Model
-    extends M5Model<ModbusRegisterCfg> {
+    extends M5Model<MbRegisterCfg> {
 
   /**
    * The model ID.
@@ -49,9 +49,9 @@ public class ModbusRegisterCfgM5Model
   public static final String FID_KIND = "kind"; //$NON-NLS-1$
 
   /**
-   * Field {@link ModbusRegisterCfg#regNo()}
+   * Field {@link MbRegisterCfg#regNo()}
    */
-  public final IM5AttributeFieldDef<ModbusRegisterCfg> REG_NO = new M5AttributeFieldDef<>( FID_REG_NO, INTEGER, //
+  public final IM5AttributeFieldDef<MbRegisterCfg> REG_NO = new M5AttributeFieldDef<>( FID_REG_NO, INTEGER, //
       TSID_NAME, STR_MODBUS_REGISTER_REG_NO, //
       TSID_DESCRIPTION, STR_MODBUS_REGISTER_REG_NO_D, //
       M5_OPDEF_FLAGS, avInt( M5FF_COLUMN ), //
@@ -61,16 +61,16 @@ public class ModbusRegisterCfgM5Model
       TSID_DEFAULT_VALUE, AV_0 //
   ) {
 
-    protected IAtomicValue doGetFieldValue( ModbusRegisterCfg aEntity ) {
+    protected IAtomicValue doGetFieldValue( MbRegisterCfg aEntity ) {
       return avInt( aEntity.regNo() );
     }
 
   };
 
   /**
-   * Field {@link ModbusRegisterCfg#kind()}
+   * Field {@link MbRegisterCfg#kind()}
    */
-  public final IM5AttributeFieldDef<ModbusRegisterCfg> KIND = new M5AttributeFieldDef<>( FID_KIND, VALOBJ, //
+  public final IM5AttributeFieldDef<MbRegisterCfg> KIND = new M5AttributeFieldDef<>( FID_KIND, VALOBJ, //
       TSID_NAME, STR_MODBUS_REGISTER_KIND, //
       TSID_DESCRIPTION, STR_MODBUS_REGISTER_KIND_D, //
       M5_OPDEF_FLAGS, avInt( M5FF_COLUMN ), //
@@ -78,7 +78,7 @@ public class ModbusRegisterCfgM5Model
       TSID_DEFAULT_VALUE, avValobj( EModbusRegisterKind.HOLD_REG ) //
   ) {
 
-    protected IAtomicValue doGetFieldValue( ModbusRegisterCfg aEntity ) {
+    protected IAtomicValue doGetFieldValue( MbRegisterCfg aEntity ) {
       return avValobj( aEntity.kind() );
     }
 
@@ -88,19 +88,19 @@ public class ModbusRegisterCfgM5Model
    * Constructor.
    */
   public ModbusRegisterCfgM5Model() {
-    super( MODEL_ID, ModbusRegisterCfg.class );
+    super( MODEL_ID, MbRegisterCfg.class );
     setNameAndDescription( STR_M5M_MODBUS_REGISTER_CFG, STR_M5M_MODBUS_REGISTER_CFG_D );
-    IListEdit<IM5FieldDef<ModbusRegisterCfg, ?>> llFields = new ElemArrayList<>();
+    IListEdit<IM5FieldDef<MbRegisterCfg, ?>> llFields = new ElemArrayList<>();
     llFields.add( REG_NO );
     llFields.add( KIND );
-    for( IDataDef d : IModbusDeviceCfgConstants.ALL_REGISTER_OPDEFS ) {
-      M5StdFieldDefParamAttr<ModbusRegisterCfg> fdef = new M5StdFieldDefParamAttr<>( d );
+    for( IDataDef d : IMbDeviceCfgConstants.MB_REG_ALL_OPDEFS ) {
+      M5StdFieldDefParamAttr<MbRegisterCfg> fdef = new M5StdFieldDefParamAttr<>( d );
       switch( fdef.id() ) {
         case TSID_NAME: {
           fdef.setFlags( M5FF_COLUMN );
           break;
         }
-        case IModbusDeviceCfgConstants.OPID_APPLICABLE_FUNCS: {
+        case IMbDeviceCfgConstants.OPID_MB_REG_APPLICABLE_FUNCS: {
           fdef.setValedEditor( ValedAvValobjIntListMbFuncCodes.FACTORY_NAME );
           fdef.setFlags( M5FF_DETAIL );
           break;
@@ -116,16 +116,16 @@ public class ModbusRegisterCfgM5Model
     setPanelCreator( new M5DefaultPanelCreator<>() {
 
       @Override
-      protected IM5CollectionPanel<ModbusRegisterCfg> doCreateCollViewerPanel( ITsGuiContext aContext,
-          IM5ItemsProvider<ModbusRegisterCfg> aItemsProvider ) {
+      protected IM5CollectionPanel<MbRegisterCfg> doCreateCollViewerPanel( ITsGuiContext aContext,
+          IM5ItemsProvider<MbRegisterCfg> aItemsProvider ) {
         OPDEF_DETAILS_PANE_PLACE.setValue( aContext.params(), avValobj( EBorderLayoutPlacement.EAST ) );
         return super.doCreateCollViewerPanel( aContext, aItemsProvider );
       }
 
       @Override
-      protected IM5CollectionPanel<ModbusRegisterCfg> doCreateCollEditPanel( ITsGuiContext aContext,
-          IM5ItemsProvider<ModbusRegisterCfg> aItemsProvider,
-          IM5LifecycleManager<ModbusRegisterCfg> aLifecycleManager ) {
+      protected IM5CollectionPanel<MbRegisterCfg> doCreateCollEditPanel( ITsGuiContext aContext,
+          IM5ItemsProvider<MbRegisterCfg> aItemsProvider,
+          IM5LifecycleManager<MbRegisterCfg> aLifecycleManager ) {
         OPDEF_DETAILS_PANE_PLACE.setValue( aContext.params(), avValobj( EBorderLayoutPlacement.EAST ) );
         return super.doCreateCollEditPanel( aContext, aItemsProvider, aLifecycleManager );
       }
@@ -134,12 +134,12 @@ public class ModbusRegisterCfgM5Model
   }
 
   @Override
-  protected IM5LifecycleManager<ModbusRegisterCfg> doCreateDefaultLifecycleManager() {
+  protected IM5LifecycleManager<MbRegisterCfg> doCreateDefaultLifecycleManager() {
     return new ModbusRegisterCfgM5LifecycleManager( this );
   }
 
   @Override
-  protected IM5LifecycleManager<ModbusRegisterCfg> doCreateLifecycleManager( Object aMaster ) {
+  protected IM5LifecycleManager<MbRegisterCfg> doCreateLifecycleManager( Object aMaster ) {
     return getLifecycleManager( null );
   }
 

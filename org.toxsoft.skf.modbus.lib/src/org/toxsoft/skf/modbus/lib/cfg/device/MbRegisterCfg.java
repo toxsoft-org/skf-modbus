@@ -1,7 +1,7 @@
 package org.toxsoft.skf.modbus.lib.cfg.device;
 
 import static org.toxsoft.core.tslib.av.metainfo.IAvMetaConstants.*;
-import static org.toxsoft.skf.modbus.lib.cfg.device.IModbusDeviceCfgConstants.*;
+import static org.toxsoft.skf.modbus.lib.cfg.device.IMbDeviceCfgConstants.*;
 import static org.toxsoft.skf.modbus.lib.mbspec.IModbusSpecificationConstants.*;
 
 import org.toxsoft.core.tslib.av.opset.*;
@@ -20,23 +20,25 @@ import org.toxsoft.skf.modbus.lib.mbspec.*;
 
 /**
  * The MODBUS register configuration, describes several consecutive registers read as a whole.
+ * <p>
+ * Options of the {@link #params()} are listed in {@link IMbDeviceCfgConstants} with prefix <b>OPDEF_MB_REG_</b>XXX.
  *
  * @author hazard157
  * @param regNo int - starting number of the register
  * @param kind {@link EModbusRegisterKind} - the kind of register as specified in the MODBUS specification
- * @param params {@link IOptionSet} - additional options listed in {@link IModbusDeviceCfgConstants}
+ * @param params {@link IOptionSet} - additional options listed in {@link IMbDeviceCfgConstants}
  */
-public record ModbusRegisterCfg ( int regNo, EModbusRegisterKind kind, IOptionSet params )
+public record MbRegisterCfg ( int regNo, EModbusRegisterKind kind, IOptionSet params )
     implements IParameterized {
 
   /**
    * The keeper singleton.
    */
-  public static final IEntityKeeper<ModbusRegisterCfg> KEEPER =
-      new AbstractEntityKeeper<>( ModbusRegisterCfg.class, EEncloseMode.ENCLOSES_BASE_CLASS, null ) {
+  public static final IEntityKeeper<MbRegisterCfg> KEEPER =
+      new AbstractEntityKeeper<>( MbRegisterCfg.class, EEncloseMode.ENCLOSES_BASE_CLASS, null ) {
 
         @Override
-        protected void doWrite( IStrioWriter aSw, ModbusRegisterCfg aEntity ) {
+        protected void doWrite( IStrioWriter aSw, MbRegisterCfg aEntity ) {
           aSw.writeInt( aEntity.regNo );
           aSw.writeSeparatorChar();
           EModbusRegisterKind.KEEPER.write( aSw, aEntity.kind );
@@ -45,13 +47,13 @@ public record ModbusRegisterCfg ( int regNo, EModbusRegisterKind kind, IOptionSe
         }
 
         @Override
-        protected ModbusRegisterCfg doRead( IStrioReader aSr ) {
+        protected MbRegisterCfg doRead( IStrioReader aSr ) {
           int regNo = aSr.readInt();
           aSr.ensureSeparatorChar();
           EModbusRegisterKind kind = EModbusRegisterKind.KEEPER.read( aSr );
           aSr.ensureSeparatorChar();
           IOptionSet params = OptionSetKeeper.KEEPER.read( aSr );
-          return new ModbusRegisterCfg( regNo, kind, params );
+          return new MbRegisterCfg( regNo, kind, params );
         }
       };
 
@@ -64,7 +66,7 @@ public record ModbusRegisterCfg ( int regNo, EModbusRegisterKind kind, IOptionSe
    * @throws TsNullArgumentRtException any argument = <code>null</code>
    * @throws TsValidationFailedRtException failed {@link #canCreate(int, EModbusRegisterKind, IOptionSet)}
    */
-  public ModbusRegisterCfg( int regNo, EModbusRegisterKind kind, IOptionSet params ) {
+  public MbRegisterCfg( int regNo, EModbusRegisterKind kind, IOptionSet params ) {
     TsValidationFailedRtException.checkError( canCreate( regNo, kind, params ) );
     this.regNo = regNo;
     this.kind = kind;
@@ -93,26 +95,26 @@ public record ModbusRegisterCfg ( int regNo, EModbusRegisterKind kind, IOptionSe
   //
 
   /**
-   * Returns value of the option {@link IModbusDeviceCfgConstants#OPDEF_MANUFACTURER_NAME}.
+   * Returns value of the option {@link IMbDeviceCfgConstants#OPDEF_MB_DEV_MANUFACTURER_NAME}.
    *
    * @return String - quantity of consecutive registers, always >=1
    */
   public int getRegistersPoolLength() {
-    int pl = OPDEF_POOL_LENGTH.getValue( params() ).asInt();
+    int pl = OPDEF_MB_REG_POOL_LENGTH.getValue( params() ).asInt();
     return pl >= 1 ? pl : 1;
   }
 
   /**
-   * Returns value of the option {@link IModbusDeviceCfgConstants#OPDEF_APPLICABLE_FUNCS}.
+   * Returns value of the option {@link IMbDeviceCfgConstants#OPDEF_MB_REG_APPLICABLE_FUNCS}.
    *
    * @return {@link IIntList} - list of integer function codes applicable to this register
    */
   public IIntList getApplicableFunctionCodes() {
-    return OPDEF_APPLICABLE_FUNCS.getValue( params() ).asValobj();
+    return OPDEF_MB_REG_APPLICABLE_FUNCS.getValue( params() ).asValobj();
   }
 
   /**
-   * Returns value of the option {@link IModbusDeviceCfgConstants#OPDEF_APPLICABLE_FUNCS}.
+   * Returns value of the option {@link IMbDeviceCfgConstants#OPDEF_MB_REG_APPLICABLE_FUNCS}.
    * <p>
    * Warning: integer codes that does not corresponding enum constant {@link EModbusFuncCode} will not be included into
    * thge resulting map!
@@ -120,7 +122,7 @@ public record ModbusRegisterCfg ( int regNo, EModbusRegisterKind kind, IOptionSe
    * @return {@link IIntMap}&lt;{@link EModbusFuncCode}&gt; - sorted map "integer code" - "enum constant"
    */
   public IIntMap<EModbusFuncCode> getApplicableFunctionConsts() {
-    IIntList llFc = OPDEF_APPLICABLE_FUNCS.getValue( params() ).asValobj();
+    IIntList llFc = OPDEF_MB_REG_APPLICABLE_FUNCS.getValue( params() ).asValobj();
     if( llFc.isEmpty() ) {
       return IIntMap.EMPTY;
     }

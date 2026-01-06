@@ -28,30 +28,30 @@ public interface IModbusDeviceCfgRegistry
   /**
    * Returns all device configurations in the registry.
    *
-   * @return {@link IStridablesList}&lt;{@link ModbusDeviceCfg}&gt; - list of device configuration
+   * @return {@link IStridablesList}&lt;{@link MbDeviceCfg}&gt; - list of device configuration
    */
-  IStridablesList<ModbusDeviceCfg> list();
+  IStridablesList<MbDeviceCfg> list();
 
   /**
    * Adds new device configuration.
    *
-   * @param aCfg {@link ModbusDeviceCfg} - configuration to add
+   * @param aCfg {@link MbDeviceCfg} - configuration to add
    * @throws TsNullArgumentRtException any argument = <code>null</code>
    * @throws TsValidationFailedRtException failed
-   *           {@link IModbusDeviceCfgRegistryValidator#canAddDeviceCfg(ModbusDeviceCfg)}
+   *           {@link IModbusDeviceCfgRegistryValidator#canAddDeviceCfg(MbDeviceCfg)}
    */
-  void addDeviceCfg( ModbusDeviceCfg aCfg );
+  void addDeviceCfg( MbDeviceCfg aCfg );
 
   /**
    * Replaces existing device configuration.
    *
    * @param aDevId String - device configuration ID to be replaced
-   * @param aCfg {@link ModbusDeviceCfg} - new configuration
+   * @param aCfg {@link MbDeviceCfg} - new configuration
    * @throws TsNullArgumentRtException any argument = <code>null</code>
    * @throws TsValidationFailedRtException failed
-   *           {@link IModbusDeviceCfgRegistryValidator#canReplaceDeviceCfg(String, ModbusDeviceCfg)}
+   *           {@link IModbusDeviceCfgRegistryValidator#canReplaceDeviceCfg(String, MbDeviceCfg)}
    */
-  void replaceDeviceCfg( String aDevId, ModbusDeviceCfg aCfg );
+  void replaceDeviceCfg( String aDevId, MbDeviceCfg aCfg );
 
   /**
    * Removes the device configuration.
