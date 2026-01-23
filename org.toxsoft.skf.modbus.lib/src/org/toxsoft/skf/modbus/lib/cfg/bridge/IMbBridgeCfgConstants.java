@@ -78,6 +78,7 @@ public interface IMbBridgeCfgConstants {
       TSID_NAME, STR_MBBCC_BUS_IS_RTU, //
       TSID_DESCRIPTION, STR_MBBCC_BUS_IS_RTU_D, //
       TSID_FORMAT_STRING, "%Б[TCP|RTU]", //$NON-NLS-1$
+      TSID_IS_READ_ONLY, AV_TRUE, //
       TSID_DEFAULT_VALUE, AV_FALSE //
   );
 
@@ -136,14 +137,14 @@ public interface IMbBridgeCfgConstants {
   );
 
   /**
-   * Option of {@link IMbNodeCfg#params()}: for TCP bus: TCP porn number, usually equals to 502.
+   * Option of {@link IMbNodeCfg#params()}: for TCP bus: TCP porn number.
    */
   IDataDef OPDEF_MB_NOD_TCP_PORT_NO = DataDef.create( OPID_MB_NOD_TCP_PORT_NO, INTEGER, //
       TSID_NAME, STR_MBBCC_NOD_TCP_PORT_NO, //
       TSID_DESCRIPTION, STR_MBBCC_NOD_TCP_PORT_NO_D, //
       TSID_MIN_INCLUSIVE, AV_1, //
       TSID_MAX_INCLUSIVE, avInt( 65535 ), //
-      TSID_DEFAULT_VALUE, avInt( 502 ) //
+      TSID_DEFAULT_VALUE, avInt( IModbusSpecificationConstants.MB_DEFAULT_PORT_NO ) //
   );
 
   /**

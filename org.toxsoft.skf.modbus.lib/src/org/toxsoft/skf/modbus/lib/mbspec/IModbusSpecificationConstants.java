@@ -60,16 +60,21 @@ public interface IModbusSpecificationConstants {
   IntRange MB_TCP_PORT_RANGE = new IntRange( 1, 65536 );
 
   /**
+   * MODBUS standard specifies default value for the TCP port as 502.
+   */
+  int MB_DEFAULT_PORT_NO = 502;
+
+  /**
    * Allowed range of the device (slave, server) address on the MODBUS bus.
    * <p>
    * Notes:
    * <ul>
-   * <li>address 0 is used for broadcasting;</li>
+   * <li>address 0 is used for broadcasting so allowed range starts from 1;</li>
    * <li>device address is optional for TCP communication, however it may be required for specific devices;</li>
    * <li>Defines 1-byte wide address range.</li>
    * </ul>
    */
-  IntRange MB_DEVICE_ADDRESS_RANGE = new IntRange( 0, 255 );
+  IntRange MB_DEVICE_ADDRESS_RANGE = new IntRange( 1, 255 );
 
   /**
    * Allowed range of MODBUS registers addresses, any device may have lower range of addresses.

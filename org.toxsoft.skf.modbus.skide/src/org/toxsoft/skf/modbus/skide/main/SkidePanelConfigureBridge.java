@@ -1,8 +1,9 @@
 package org.toxsoft.skf.modbus.skide.main;
 
-import org.eclipse.swt.*;
 import org.eclipse.swt.widgets.*;
 import org.toxsoft.core.tsgui.bricks.ctx.*;
+import org.toxsoft.core.tsgui.bricks.ctx.impl.*;
+import org.toxsoft.skf.modbus.gui.glib.bridge.*;
 import org.toxsoft.skide.core.api.*;
 import org.toxsoft.skide.core.api.impl.*;
 
@@ -26,13 +27,9 @@ public class SkidePanelConfigureBridge
 
   @Override
   protected Control doCreateControl( Composite aParent ) {
-
-    // TODO SkidePanelConfigureBridge.doCreateControl()
-
-    Label l = new Label( aParent, SWT.BORDER );
-    l.setText( getClass().getSimpleName() );
-    return l;
-
+    PanelMbBridgeCfgsEditor panel = new PanelMbBridgeCfgsEditor( new TsGuiContext( tsContext() ) );
+    panel.createControl( aParent );
+    return panel.getControl();
   }
 
 }

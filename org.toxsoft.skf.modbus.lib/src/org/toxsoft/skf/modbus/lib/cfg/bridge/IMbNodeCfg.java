@@ -1,8 +1,8 @@
 package org.toxsoft.skf.modbus.lib.cfg.bridge;
 
+import org.toxsoft.core.tslib.av.utils.*;
+import org.toxsoft.core.tslib.bricks.events.change.*;
 import org.toxsoft.core.tslib.bricks.strid.*;
-import org.toxsoft.core.tslib.utils.errors.*;
-import org.toxsoft.skf.modbus.lib.cfg.bridge.to_devel.*;
 import org.toxsoft.skf.modbus.lib.cfg.device.*;
 
 /**
@@ -17,7 +17,14 @@ import org.toxsoft.skf.modbus.lib.cfg.device.*;
  * @author hazard157
  */
 public interface IMbNodeCfg
-    extends IStridableParameterized {
+    extends IStridableParameterized, IParameterizedBatchEdit, IGenericChangeEventCapable, Comparable<IMbNodeCfg> {
+
+  /**
+   * Returns the parent (owner) bus.
+   *
+   * @return {@link IMbBusCfg} - the parent
+   */
+  IMbBusCfg parent();
 
   /**
    * Returns the ID of the physical device from the registry {@link IMbBridgeCfg#listUsedDevices()}.
@@ -40,34 +47,10 @@ public interface IMbNodeCfg
    */
   boolean isRtu();
 
-  /**
-   * Returns value of option {@link IMbBridgeCfgConstants#OPDEF_MB_NOD_TCP_IP_ADDRESS}.
-   *
-   * @return String - MODBUS Node IP address (either numerical or domain name)
-   * @throws TsUnsupportedFeatureRtException node is on RTU bus, {@link #isRtu()} = <code>true</code>
-   */
-  String getTcpIpAddress();
-
-  /**
-   * Returns value of option {@link IMbBridgeCfgConstants#OPDEF_MB_NOD_TCP_PORT_NO}.
-   *
-   * @return int - TCP port number in range 1..65535, usually 502
-   * @throws TsUnsupportedFeatureRtException node is on RTU bus, {@link #isRtu()} = <code>true</code>
-   */
-  int getTcpPortNo();
-
-  /**
-   * Returns value of option {@link IMbBridgeCfgConstants#OPDEF_MB_NOD_RTU_DEV_ADDR}.
-   *
-   * @return int - node (slave device) number on serial bus, in range 1..255
-   * @throws TsUnsupportedFeatureRtException node is on TCP bus, {@link #isRtu()} = <code>false</code>
-   */
-  int getRtuDeviceAddress();
-
   // TODO read / write request sending options: periodical? by request?
   // TODO =may be different requests for different register(s) ?
   // TODO maybe define register pool to be asked at once?
 
-  IMbDeviceMappingCfg mappingCfg();
+  // IMbDeviceMappingCfg mappingCfg();
 
 }

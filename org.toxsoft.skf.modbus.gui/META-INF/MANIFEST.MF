@@ -6,12 +6,11 @@ Bundle-Vendor: toxsoft.org
 Bundle-Version: 1.0.0.qualifier
 Export-Package: org.toxsoft.skf.modbus.gui,
  org.toxsoft.skf.modbus.gui.e4.services,
- org.toxsoft.skf.modbus.gui.glib,
- org.toxsoft.skf.modbus.gui.incub,
+ org.toxsoft.skf.modbus.gui.glib.bridge,
+ org.toxsoft.skf.modbus.gui.glib.device,
  org.toxsoft.skf.modbus.gui.km5,
  org.toxsoft.skf.modbus.gui.l10n,
- org.toxsoft.skf.modbus.gui.m5,
- org.toxsoft.skf.modbus.gui.mbedit
+ org.toxsoft.skf.modbus.gui.m5.device
 Bundle-Activator: org.toxsoft.skf.modbus.gui.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.swt,

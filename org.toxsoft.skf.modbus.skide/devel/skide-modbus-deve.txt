@@ -1,0 +1,2 @@
+--- seperate view to list all used registers (each row bridge-bus-node-register)
+--- separate view to list all imported data (each row GWID-register-device-bus-bridge)

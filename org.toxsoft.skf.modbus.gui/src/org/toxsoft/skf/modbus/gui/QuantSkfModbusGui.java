@@ -4,10 +4,8 @@ import org.eclipse.e4.core.contexts.*;
 import org.toxsoft.core.tsgui.bricks.quant.*;
 import org.toxsoft.core.tsgui.m5.*;
 import org.toxsoft.core.tsgui.valed.api.*;
-import org.toxsoft.core.tslib.utils.valobj.*;
-import org.toxsoft.skf.modbus.gui.glib.*;
-import org.toxsoft.skf.modbus.gui.incub.*;
-import org.toxsoft.skf.modbus.gui.m5.*;
+import org.toxsoft.skf.modbus.gui.glib.device.*;
+import org.toxsoft.skf.modbus.gui.m5.device.*;
 import org.toxsoft.skf.modbus.lib.*;
 
 /**
@@ -24,7 +22,7 @@ public class QuantSkfModbusGui
   public QuantSkfModbusGui() {
     super( QuantSkfModbusGui.class.getSimpleName() );
     SkfModbusLibUtils.initialize();
-    TsValobjUtils.registerKeeper( EResolveStrategy.KEEPER_ID, EResolveStrategy.KEEPER );
+    // FIXME TsValobjUtils.registerKeeper( EMbNodePathKind.KEEPER_ID, EMbNodePathKind.KEEPER );
   }
 
   // ------------------------------------------------------------------------------------
@@ -45,9 +43,13 @@ public class QuantSkfModbusGui
     vcfReg.registerFactory( ValedAvValobjIntListMbFuncCodes.FACTORY );
     // M5
     IM5Domain m5 = aWinContext.get( IM5Domain.class );
-    m5.addModel( new ModbusRegisterCfgM5Model() );
-    m5.addModel( new ModbusDeviceCfgM5Model() );
-    m5.addModel( new ModbusFuncCodeM5Model() );
+    m5.addModel( new MbRegisterCfgM5Model() );
+    m5.addModel( new MbDeviceCfgM5Model() );
+    m5.addModel( new MbFuncCodeM5Model() );
+
+    // FIXME m5.addModel( new MbBridgeCfgM5Model() );
+    // FIXME m5.addModel( new MbBusCfgM5Model() );
+    // FIXME m5.addModel( new MbNodeCfgM5Model() );
   }
 
 }

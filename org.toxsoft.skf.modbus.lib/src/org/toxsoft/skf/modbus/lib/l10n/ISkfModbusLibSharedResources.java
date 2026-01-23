@@ -13,6 +13,22 @@ import org.toxsoft.skf.modbus.lib.mbspec.*;
 public interface ISkfModbusLibSharedResources {
 
   /**
+   * FIXME bridge
+   */
+  String FMT_ERR_CANT_CHANGE_FIXED_OP     = Messages.getString( "MbXxxCfg.FMT_ERR_CANT_CHANGE_FIXED_OP" );     //$NON-NLS-1$
+  String FMT_ERR_MBNODE_ALREADY_EXISTS    = Messages.getString( "MbXxxCfg.FMT_ERR_MBNODE_ALREADY_EXISTS" );    //$NON-NLS-1$
+  String FMT_ERR_INV_MBNODE_ID            = Messages.getString( "MbXxxCfg.FMT_ERR_INV_MBNODE_ID" );            //$NON-NLS-1$
+  String FMT_ERR_INV_RTU_ADDR             = Messages.getString( "MbXxxCfg.FMT_ERR_INV_RTU_ADDR" );             //$NON-NLS-1$
+  String FMT_ERR_RTU_ADDR_EXISTS          = Messages.getString( "MbXxxCfg.FMT_ERR_RTU_ADDR_EXISTS" );          //$NON-NLS-1$
+  String FMT_ERR_NO_SUCH_DEVICE_IN_BRIDGE = Messages.getString( "MbXxxCfg.FMT_ERR_NO_SUCH_DEVICE_IN_BRIDGE" ); //$NON-NLS-1$
+  String MSG_ERR_BLANK_IP_ADDRESS         = Messages.getString( "MbXxxCfg.MSG_ERR_BLANK_IP_ADDRESS" );         //$NON-NLS-1$
+  String MSG_ERR_INV_TCP_PORT_NO          = Messages.getString( "MbXxxCfg.MSG_ERR_INV_TCP_PORT_NO" );          //$NON-NLS-1$
+  String FMT_ERR_TCP_ADDR_EXISTS          = Messages.getString( "MbXxxCfg.FMT_ERR_TCP_ADDR_EXISTS" );          //$NON-NLS-1$
+  String FMT_WARN_MBNODE_DUR_IP_ADDR      = Messages.getString( "MbXxxCfg.FMT_WARN_MBNODE_DUR_IP_ADDR" );      //$NON-NLS-1$
+  String FMT_ERR_MBBUS_ALREADY_EXISTS     = Messages.getString( "MbXxxCfg.FMT_ERR_MBBUS_ALREADY_EXISTS" );     //$NON-NLS-1$
+  String FMT_WARN_BUS_HAS_NODES           = Messages.getString( "MbXxxCfg.FMT_WARN_BUS_HAS_NODES" );           //$NON-NLS-1$
+
+  /**
    * {@link IModbusSpecificationConstants}
    */
   String FMT_ERR_REG_ADDR_OUT_OF_RANGE = Messages.getString( "MbSpec.FMT_ERR_REG_ADDR_OUT_OF_RANGE" ); //$NON-NLS-1$

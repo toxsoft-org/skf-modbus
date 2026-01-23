@@ -4,7 +4,7 @@ import org.eclipse.swt.widgets.*;
 import org.toxsoft.core.tsgui.bricks.ctx.*;
 import org.toxsoft.core.tsgui.bricks.ctx.impl.*;
 import org.toxsoft.skf.modbus.gui.e4.services.*;
-import org.toxsoft.skf.modbus.gui.glib.*;
+import org.toxsoft.skf.modbus.gui.glib.device.*;
 import org.toxsoft.skide.core.api.*;
 import org.toxsoft.skide.core.api.impl.*;
 
@@ -30,7 +30,7 @@ public class SkidePanelModbusDevicesRegistry
   protected Control doCreateControl( Composite aParent ) {
     ITsGuiContext ctx = new TsGuiContext( tsContext() );
     IModbusDeviceCfgRegistry devReg = ctx.get( IModbusDeviceCfgRegistry.class );
-    PanelModbusDeviceCfgsEditor panel = new PanelModbusDeviceCfgsEditor( aParent, ctx, isControlValid(), devReg );
+    PanelMbDeviceCfgsEditor panel = new PanelMbDeviceCfgsEditor( aParent, ctx, isControlValid(), devReg );
     return panel;
   }
 

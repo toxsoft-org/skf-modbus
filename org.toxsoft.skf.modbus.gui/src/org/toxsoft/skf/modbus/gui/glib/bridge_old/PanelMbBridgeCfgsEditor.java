@@ -1,0 +1,88 @@
+package org.toxsoft.skf.modbus.gui.glib.bridge_old;
+
+import org.eclipse.swt.widgets.*;
+import org.toxsoft.core.tsgui.bricks.ctx.*;
+import org.toxsoft.core.tsgui.panels.generic.*;
+import org.toxsoft.core.tslib.coll.*;
+import org.toxsoft.core.tslib.utils.errors.*;
+import org.toxsoft.skf.modbus.lib.cfg.bridge.*;
+
+/**
+ * Panel edits list of {@link IMbBridgeCfg}.
+ * <p>
+ * Panel contains three panes:
+ * <ul>
+ * <li>left pane - 3-level tree made of MODBUS Bridges {@link IMbBridgeCfg}, child Buses {@link IMbBusCfg} and
+ * grandchild MODBUS Nodes {@link IMbNodeCfg};</li>
+ * <li>middle pane - editable properties of the item selected in left pane, For the selected MODBUS Node: the list of
+ * register mappings {@link IMbRegisterMappingCfg} above and below is the list of multi-mappings
+ * {@link IMbMultiMappingCfg};</li>
+ * <li>right panel - mapping inplace editor of the settings of the selected mapping either register
+ * {@link IMbRegisterMappingCfg} or multi {@link IMbMultiMappingCfg}.</li>
+ * </ul>
+ * Any changes in the configuration tree generates an event of the eventer {@link #genericChangeEventer()}.
+ *
+ * @author hazard157
+ */
+public class PanelMbBridgeCfgsEditor
+    extends AbstractGenericCollPanel<IMbBridgeCfg> {
+
+  private final IMbBridgeCfgsEditorEnvironment edEnv = new MbBridgeCfgsEditorEnvironment();
+
+  /**
+   * Constructor.
+   * <p>
+   * Constructor stores reference to the context, does not creates copy.
+   *
+   * @param aContext {@link ITsGuiContext} - the context
+   * @throws TsNullArgumentRtException any argument = <code>null</code>
+   */
+  public PanelMbBridgeCfgsEditor( ITsGuiContext aContext ) {
+    super( aContext );
+    tsContext().put( IMbBridgeCfgsEditorEnvironment.class, edEnv );
+    // TODO Auto-generated constructor stub
+  }
+
+  // ------------------------------------------------------------------------------------
+  // AbstractGenericCollPanel
+  //
+
+  @Override
+  protected Control doCreateControl( Composite aParent ) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public IMbBridgeCfg selectedItem() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public void setSelectedItem( IMbBridgeCfg aItem ) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public IList<IMbBridgeCfg> items() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public void refresh() {
+    // TODO Auto-generated method stub
+
+  }
+
+  // ------------------------------------------------------------------------------------
+  // API
+  //
+
+  public void setItems( IList<IMbBridgeCfg> aItems ) {
+    // TODO PanelMbBridgeCfgsEditor.setItems()
+  }
+
+}
