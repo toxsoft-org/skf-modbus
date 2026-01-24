@@ -52,8 +52,8 @@ public interface IMbDeviceCfgConstants {
   /**
    * Option of {@link MbDeviceCfg#params()}: number of consecutive registers.
    * <p>
-   * Some values requires more than one register (for example, string or 64-bit double). This option contains quantity
-   * of the consecutive registers used to sore single data.
+   * Some values requires more than one physical register (for example, string or 64-bit double). This option contains
+   * quantity of the consecutive registers used to sore single logical register.
    * <p>
    * Default option value is 1 - the single register.
    */
@@ -109,6 +109,17 @@ public interface IMbDeviceCfgConstants {
   );
 
   /**
+   * Option of {@link MbDeviceCfg#params()}: Byte order when reading two or mode 16-bit registers.<br>
+   * Each MODBUS physical register is 16-bit wide with `Big-endian` encoding (see chapter 4.2 of MODBUS specification).
+   * However when reading sequence of registers reading order may be either ABCD or CDAB.
+   */
+  IDataDef OPDEF_MB_DEV_IS_CDAB = DataDef.create( "IsCDAB", BOOLEAN, //$NON-NLS-1$
+      TSID_NAME, STR_MSDCC_IS_CDAB, //
+      TSID_DESCRIPTION, STR_MSDCC_IS_CDAB_D, //
+      TSID_DEFAULT_VALUE, AV_FALSE //
+  );
+
+  /**
    * Option of {@link MbDeviceCfg#params()}: The name of the device manufacturer company.<br>
    * See chapter 6.21 of MODBUS specification, command 43 / 14 (0x2B / 0x0E) Read Device Identification.
    */
@@ -155,6 +166,7 @@ public interface IMbDeviceCfgConstants {
   IStridablesList<IDataDef> MB_DEV_ALL_OPDEFS = new StridablesList<>( //
       DDEF_NAME, //
       DDEF_DESCRIPTION, //
+      OPDEF_MB_DEV_IS_CDAB, //
       OPDEF_MB_DEV_MANUFACTURER_NAME, //
       OPDEF_MB_DEV_MANUFACTURER_URL, //
       OPDEF_MB_DEV_PRODUCT_URL, //

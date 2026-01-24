@@ -125,6 +125,17 @@ public final class MbDeviceCfg
   //
 
   /**
+   * returns the sign that device uses byte sequence CDAB (instead of ABCD) for multi-register data encoding.
+   *
+   * @return boolean CDAB encoding flag<br>
+   *         <b>true</b> - device uses CDAB byte sequence;<br>
+   *         <b>false</b> - device uses ABCD byte sequence.
+   */
+  public boolean isCdab() {
+    return OPDEF_MB_DEV_IS_CDAB.getValue( params() ).asBool();
+  }
+
+  /**
    * Returns value of the option {@link IMbDeviceCfgConstants#OPDEF_MB_DEV_MANUFACTURER_NAME}.
    *
    * @return String - device manufacturer company name

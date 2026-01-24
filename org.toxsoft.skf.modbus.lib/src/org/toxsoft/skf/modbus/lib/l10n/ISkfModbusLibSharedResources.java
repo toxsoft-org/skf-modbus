@@ -98,6 +98,8 @@ public interface ISkfModbusLibSharedResources {
   String STR_MSDCC_DEVICE_NAME_D          = Messages.getString( "MSDCC.STR_MSDCC_DEVICE_NAME_D" );          //$NON-NLS-1$
   String STR_MSDCC_DEVICE_DESCRIPTION     = Messages.getString( "MSDCC.STR_MSDCC_DEVICE_DESCRIPTION" );     //$NON-NLS-1$
   String STR_MSDCC_DEVICE_DESCRIPTION_D   = Messages.getString( "MSDCC.STR_MSDCC_DEVICE_DESCRIPTION_D" );   //$NON-NLS-1$
+  String STR_MSDCC_IS_CDAB                = Messages.getString( "MSDCC.STR_MSDCC_IS_CDAB" );                //$NON-NLS-1$
+  String STR_MSDCC_IS_CDAB_D              = Messages.getString( "MSDCC.STR_MSDCC_IS_CDAB_D" );              //$NON-NLS-1$
   String STR_MSDCC_MANUFACTURER_NAME      = Messages.getString( "MSDCC.STR_MSDCC_MANUFACTURER_NAME" );      //$NON-NLS-1$
   String STR_MSDCC_MANUFACTURER_NAME_D    = Messages.getString( "MSDCC.STR_MSDCC_MANUFACTURER_NAME_D" );    //$NON-NLS-1$
   String STR_MSDCC_MANUFACTURER_URL       = Messages.getString( "MSDCC.STR_MSDCC_MANUFACTURER_URL" );       //$NON-NLS-1$

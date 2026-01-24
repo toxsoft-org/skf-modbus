@@ -19,7 +19,15 @@ import org.toxsoft.core.tslib.utils.errors.*;
 import org.toxsoft.skf.modbus.lib.mbspec.*;
 
 /**
- * The MODBUS register configuration, describes several consecutive registers read as a whole.
+ * The MODBUS logical register configuration, describes several consecutive registers read as a whole.
+ * <p>
+ * Note: the word '<i>register</i>' in specification denotes two closely related, however different concepts. From the
+ * one size, the register is 16-bit wide port with unique number on the device - we call it a <i>physical</i> register.
+ * But The single unit of data may not fit to the single physical register so several consecutive registers (we call
+ * them a <i>logical</i> register) must be read or written at once. For example, logical register for {@link Float}
+ * value needs 4 bytes, that is 2 physical registers.
+ * <p>
+ * The number of logical register {@link #regNo()} is always the number of the first physical register in a sequence.
  * <p>
  * Options of the {@link #params()} are listed in {@link IMbDeviceCfgConstants} with prefix <b>OPDEF_MB_REG_</b>XXX.
  *
@@ -95,7 +103,7 @@ public record MbRegisterCfg ( int regNo, EModbusRegisterKind kind, IOptionSet pa
   //
 
   /**
-   * Returns value of the option {@link IMbDeviceCfgConstants#OPDEF_MB_DEV_MANUFACTURER_NAME}.
+   * Returns value of the option {@link IMbDeviceCfgConstants#OPDEF_MB_REG_POOL_LENGTH}.
    *
    * @return String - quantity of consecutive registers, always >=1
    */
@@ -117,7 +125,7 @@ public record MbRegisterCfg ( int regNo, EModbusRegisterKind kind, IOptionSet pa
    * Returns value of the option {@link IMbDeviceCfgConstants#OPDEF_MB_REG_APPLICABLE_FUNCS}.
    * <p>
    * Warning: integer codes that does not corresponding enum constant {@link EModbusFuncCode} will not be included into
-   * thge resulting map!
+   * the resulting map!
    *
    * @return {@link IIntMap}&lt;{@link EModbusFuncCode}&gt; - sorted map "integer code" - "enum constant"
    */
