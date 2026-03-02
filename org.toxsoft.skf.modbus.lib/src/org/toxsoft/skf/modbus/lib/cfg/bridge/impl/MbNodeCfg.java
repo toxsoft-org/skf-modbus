@@ -1,10 +1,12 @@
 package org.toxsoft.skf.modbus.lib.cfg.bridge.impl;
 
 import org.toxsoft.core.tslib.av.opset.*;
+import org.toxsoft.core.tslib.bricks.validator.*;
 import org.toxsoft.core.tslib.coll.primtypes.*;
 import org.toxsoft.core.tslib.coll.primtypes.impl.*;
 import org.toxsoft.core.tslib.utils.errors.*;
 import org.toxsoft.skf.modbus.lib.cfg.bridge.*;
+import org.toxsoft.skf.modbus.lib.cfg.bridge.simple.*;
 
 /**
  * {@link IMbNodeCfg} base implementation.
@@ -16,6 +18,8 @@ class MbNodeCfg<P extends MbBusCfg>
     implements IMbNodeCfg {
 
   private static final String OPID_DEVICE_ID = "ModbusDeviceId"; //$NON-NLS-1$
+
+  private final IIntMapEdit<MbskSimpleMapperCfg> singleMappings = new SortedIntMap<>();
 
   public MbNodeCfg( P aParent, String aNodeId, String aDeviceId, IOptionSet aParams, IStringList aFixedOpIds ) {
     super( aParent, aNodeId, aParams, addSelfOpIds( aFixedOpIds ) );
@@ -43,6 +47,35 @@ class MbNodeCfg<P extends MbBusCfg>
   @Override
   public boolean isRtu() {
     return parent().isRtu();
+  }
+
+  @Override
+  public IIntMap<MbskSimpleMapperCfg> singleMappings() {
+    return singleMappings;
+  }
+
+  @Override
+  public ValidationResult canPutSimpleMapper( int aRegNo, MbskSimpleMapperCfg aCfg ) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public void putSimpleMapper( int aRegNo, MbskSimpleMapperCfg aCfg ) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public ValidationResult canRemoveSimpleMapper( int aRegNo ) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public void removeSimpleMapper( int aRegNo ) {
+    // TODO Auto-generated method stub
+
   }
 
   // ------------------------------------------------------------------------------------

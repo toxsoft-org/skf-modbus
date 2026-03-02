@@ -6,6 +6,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
-	<classpathentry excluding="org/toxsoft/skf/modbus/lib/cfg/bridge_old/" kind="src" path="src"/>
+	<classpathentry excluding="org/toxsoft/skf/modbus/lib/conv_old/" kind="src" path="src"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

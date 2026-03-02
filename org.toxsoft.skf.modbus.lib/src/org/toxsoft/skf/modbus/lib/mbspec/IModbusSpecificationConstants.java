@@ -32,8 +32,8 @@ public interface IModbusSpecificationConstants {
   int MB_FC_04_READ_IN_REG    = 4;  // read input register (AI), see section 6.4
   int MB_FC_05_WRITE_COIL     = 5;  // write single coil (DO), see section 6.5
   int MB_FC_06_WRITE_REG      = 6;  // write single register (AO), see section 6.6
-  int MB_FC_12_WRITE_REGS     = 12; // write several registers (AOs), see section 6.12
   int MB_FC_15_WRITE_COILS    = 15; // write several coils (DOs), see section 6.11
+  int MB_FC_16_WRITE_REGS     = 16; // write several registers (AOs), see section 6.12
 
   // ------------------------------------------------------------------------------------
   // 7 MODBUS Exception Responses

@@ -1,6 +1,8 @@
-package org.toxsoft.skf.modbus.lib.devel;
+package org.toxsoft.skf.modbus.lib.conv_old;
 
 import org.toxsoft.core.tslib.bricks.strid.more.*;
+import org.toxsoft.skf.modbus.lib.cfg.device.conv.*;
+import org.toxsoft.skf.modbus.lib.conv.*;
 
 /**
  * The registry of the converter factories.

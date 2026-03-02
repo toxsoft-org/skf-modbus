@@ -2,6 +2,7 @@ package org.toxsoft.skf.modbus.lib.l10n;
 
 import org.toxsoft.skf.modbus.lib.cfg.bridge.*;
 import org.toxsoft.skf.modbus.lib.cfg.device.*;
+import org.toxsoft.skf.modbus.lib.cfg.device.conv.*;
 import org.toxsoft.skf.modbus.lib.mbspec.*;
 
 /**
@@ -13,7 +14,34 @@ import org.toxsoft.skf.modbus.lib.mbspec.*;
 public interface ISkfModbusLibSharedResources {
 
   /**
-   * FIXME bridge
+   * org.toxsoft.skf.modbus.lib.cfg.device.conv
+   */
+  String FMT_ERR_DEV_NO_REG_NO                = Messages.getString( "conv.FMT_ERR_DEV_NO_REG_NO" );                //$NON-NLS-1$
+  String FMT_ERR_CONV_FACTORY_INV_TYPE_ID     = Messages.getString( "conv.FMT_ERR_CONV_FACTORY_INV_TYPE_ID" );     //$NON-NLS-1$
+  String FMT_ERR_CONV_FACTORY_INV_REG_KIND    = Messages.getString( "conv.FMT_ERR_CONV_FACTORY_INV_REG_KIND" );    //$NON-NLS-1$
+  String STR_CONV_FLOAT_COEFF_K               = Messages.getString( "conv.STR_CONV_FLOAT_COEFF_K" );               //$NON-NLS-1$
+  String STR_CONV_FLOAT_COEFF_K_D             = Messages.getString( "conv.STR_CONV_FLOAT_COEFF_K_D" );             //$NON-NLS-1$
+  String STR_CONV_FLOAT_COEFF_B               = Messages.getString( "conv.STR_CONV_FLOAT_COEFF_B" );               //$NON-NLS-1$
+  String STR_CONV_FLOAT_COEFF_B_D             = Messages.getString( "conv.STR_CONV_FLOAT_COEFF_B_D" );             //$NON-NLS-1$
+  String FMT_ERR_CONV_FLOAT_INV_REG_POOL_SIZE = Messages.getString( "conv.FMT_ERR_CONV_FLOAT_INV_REG_POOL_SIZE" ); //$NON-NLS-1$
+  String FMT_ERR_CONV_FLOAT_NON_FLOAT_OP      = Messages.getString( "conv.FMT_ERR_CONV_FLOAT_NON_FLOAT_OP" );      //$NON-NLS-1$
+  String FMT_ERR_CONV_FLOAT_NOT_BOTH_OPS      = Messages.getString( "conv.FMT_ERR_CONV_FLOAT_NOT_BOTH_OPS" );      //$NON-NLS-1$
+  String FMT_ERR_CONV_INT_INV_REG_POOL_SIZE   = Messages.getString( "conv.FMT_ERR_CONV_INT_INV_REG_POOL_SIZE" );   //$NON-NLS-1$
+
+  /**
+   * {@link EMbConverterType}
+   */
+  String STR_EMCT_CONV_BOOL      = Messages.getString( "MbXxxCfg.STR_EMCT_CONV_BOOL" );      //$NON-NLS-1$
+  String STR_EMCT_CONV_BOOL_D    = Messages.getString( "MbXxxCfg.STR_EMCT_CONV_BOOL_D" );    //$NON-NLS-1$
+  String STR_EMCT_CONV_INTEGER   = Messages.getString( "MbXxxCfg.STR_EMCT_CONV_INTEGER" );   //$NON-NLS-1$
+  String STR_EMCT_CONV_INTEGER_D = Messages.getString( "MbXxxCfg.STR_EMCT_CONV_INTEGER_D" ); //$NON-NLS-1$
+  String STR_EMCT_CONV_FLOAT     = Messages.getString( "MbXxxCfg.STR_EMCT_CONV_FLOAT" );     //$NON-NLS-1$
+  String STR_EMCT_CONV_FLOAT_D   = Messages.getString( "MbXxxCfg.STR_EMCT_CONV_FLOAT_D" );   //$NON-NLS-1$
+  String STR_EMCT_CONV_STRING    = Messages.getString( "MbXxxCfg.STR_EMCT_CONV_STRING" );    //$NON-NLS-1$
+  String STR_EMCT_CONV_STRING_D  = Messages.getString( "MbXxxCfg.STR_EMCT_CONV_STRING_D" );  //$NON-NLS-1$
+
+  /**
+   * org.toxsoft.skf.modbus.lib.cfg.bridge.impl
    */
   String FMT_ERR_CANT_CHANGE_FIXED_OP     = Messages.getString( "MbXxxCfg.FMT_ERR_CANT_CHANGE_FIXED_OP" );     //$NON-NLS-1$
   String FMT_ERR_MBNODE_ALREADY_EXISTS    = Messages.getString( "MbXxxCfg.FMT_ERR_MBNODE_ALREADY_EXISTS" );    //$NON-NLS-1$
@@ -86,10 +114,10 @@ public interface ISkfModbusLibSharedResources {
   String STR_MFC_05_WRITE_COIL_D     = Messages.getString( "EModbusFuncCode.STR_MFC_05_WRITE_COIL_D" );     //$NON-NLS-1$
   String STR_MFC_06_WRITE_REG        = Messages.getString( "EModbusFuncCode.STR_MFC_06_WRITE_REG" );        //$NON-NLS-1$
   String STR_MFC_06_WRITE_REG_D      = Messages.getString( "EModbusFuncCode.STR_MFC_06_WRITE_REG_D" );      //$NON-NLS-1$
-  String STR_MFC_12_WRITE_REGS       = Messages.getString( "EModbusFuncCode.STR_MFC_12_WRITE_REGS" );       //$NON-NLS-1$
-  String STR_MFC_12_WRITE_REGS_D     = Messages.getString( "EModbusFuncCode.STR_MFC_12_WRITE_REGS_D" );     //$NON-NLS-1$
   String STR_MFC_15_WRITE_COILS      = Messages.getString( "EModbusFuncCode.STR_MFC_15_WRITE_COILS" );      //$NON-NLS-1$
   String STR_MFC_15_WRITE_COILS_D    = Messages.getString( "EModbusFuncCode.STR_MFC_15_WRITE_COILS_D" );    //$NON-NLS-1$
+  String STR_MFC_16_WRITE_REGS       = Messages.getString( "EModbusFuncCode.STR_MFC_16_WRITE_REGS" );       //$NON-NLS-1$
+  String STR_MFC_16_WRITE_REGS_D     = Messages.getString( "EModbusFuncCode.STR_MFC_16_WRITE_REGS_D" );     //$NON-NLS-1$
 
   /**
    * {@link IMbDeviceCfgConstants}

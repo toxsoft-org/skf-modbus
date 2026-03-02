@@ -3,6 +3,9 @@ package org.toxsoft.skf.modbus.lib.cfg.bridge;
 import org.toxsoft.core.tslib.av.utils.*;
 import org.toxsoft.core.tslib.bricks.events.change.*;
 import org.toxsoft.core.tslib.bricks.strid.*;
+import org.toxsoft.core.tslib.bricks.validator.*;
+import org.toxsoft.core.tslib.coll.primtypes.*;
+import org.toxsoft.skf.modbus.lib.cfg.bridge.simple.*;
 import org.toxsoft.skf.modbus.lib.cfg.device.*;
 
 /**
@@ -47,10 +50,21 @@ public interface IMbNodeCfg
    */
   boolean isRtu();
 
-  // TODO read / write request sending options: periodical? by request?
-  // TODO =may be different requests for different register(s) ?
-  // TODO maybe define register pool to be asked at once?
+  /**
+   * Returns single register mappings to the USkat entities.
+   *
+   * @return {@link IIntMap}&lt;{@link MbskSimpleMapperCfg}&gt; - map "register No" - "mapping config"
+   */
+  IIntMap<MbskSimpleMapperCfg> singleMappings();
 
-  // IMbDeviceMappingCfg mappingCfg();
+  ValidationResult canPutSimpleMapper( int aRegNo, MbskSimpleMapperCfg aCfg );
+
+  void putSimpleMapper( int aRegNo, MbskSimpleMapperCfg aCfg );
+
+  ValidationResult canRemoveSimpleMapper( int aRegNo );
+
+  void removeSimpleMapper( int aRegNo );
+
+  // FIXME multi-mappings
 
 }

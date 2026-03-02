@@ -1,5 +1,6 @@
 package org.toxsoft.skf.modbus.lib.cfg.bridge;
 
+import org.toxsoft.core.tslib.av.*;
 import org.toxsoft.core.tslib.av.opset.*;
 import org.toxsoft.core.tslib.av.utils.*;
 import org.toxsoft.core.tslib.bricks.events.change.*;
@@ -10,6 +11,7 @@ import org.toxsoft.core.tslib.bricks.validator.impl.*;
 import org.toxsoft.core.tslib.coll.*;
 import org.toxsoft.core.tslib.utils.errors.*;
 import org.toxsoft.skf.modbus.lib.cfg.device.*;
+import org.toxsoft.skf.modbus.lib.cfg.device.conv.*;
 
 /**
  * Configuration of the single MODBUS - USkat bridge.
@@ -21,11 +23,18 @@ import org.toxsoft.skf.modbus.lib.cfg.device.*;
  * {@link IMbBusCfg#listNodeCfgs()}. Each node on bus represents an existing physical <b><i>MODBUS Device</i></b>. Node
  * contains reference to the device configuration - an ID {@link IMbNodeCfg#deviceId()}. Configuration of the device may
  * be found in registry {@link #listUsedDevices()}. The Several nodes representing same kind of device has the same
- * device ID while representing different physical devices of the same kind, Each Device has available <b><i>MODBUS
- * Registers</i></b> listed in {@link MbDeviceCfg#registerCfs()}. The main part of node configuration is
- * <b><i>MODBUS-USkat Mapping</i></b>. Mapping describes how data read from registers will converted to the USkat
- * entities and vice versa - how the USkat manipulates (writes) MODBUS registers. More about mapping see in
- * {@link IMbDeviceMappingCfg}.
+ * device ID while representing different physical devices of the same kind, <br>
+ * Each Device has available <b><i>MODBUS Logical Registers</i></b> listed in {@link MbDeviceCfg#registerCfs()}. Logical
+ * register is one or more consecutive physical registers producing single data as described by the device manufacturer.
+ * Raw words of the physical registers of one logical register are converted to/from an {@link IAtomicValue}. Used
+ * <b>register <-> atomic value converter</b> is described by {@link MbConverterCfg} as a part of
+ * {@link MbRegisterCfg#converterCfg()}.
+ * <p>
+ * <p>
+ * <p>
+ * The main part of node configuration is <b><i>MODBUS-USkat Mapping</i></b>. Mapping describes how data read from
+ * registers will converted to the USkat entities and vice versa - how the USkat manipulates (writes) MODBUS registers.
+ * More about mapping see in {@link IMbDeviceMappingCfg}.
  * <p>
  * Options of the {@link #params()} are listed in {@link IMbBridgeCfgConstants} with prefix <b>OPDEF_MB_BRI_</b>XXX.
  *

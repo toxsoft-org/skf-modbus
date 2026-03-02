@@ -10,6 +10,7 @@ import org.toxsoft.core.tslib.av.opset.*;
 import org.toxsoft.core.tslib.av.opset.impl.*;
 import org.toxsoft.core.tslib.bricks.validator.*;
 import org.toxsoft.skf.modbus.lib.cfg.device.*;
+import org.toxsoft.skf.modbus.lib.cfg.device.conv.*;
 import org.toxsoft.skf.modbus.lib.mbspec.*;
 
 /**
@@ -41,7 +42,10 @@ class MbRegisterCfgM5LifecycleManager
         params.setValue( dd, av );
       }
     }
-    return MbRegisterCfg.canCreate( regNo, kind, params );
+
+    MbConverterCfg convCfg = null; // FIXME null!
+
+    return MbRegisterCfg.canCreate( regNo, kind, params, convCfg );
   }
 
   private static MbRegisterCfg makeCfg( IM5Bunch<MbRegisterCfg> aValues ) {
@@ -55,7 +59,10 @@ class MbRegisterCfgM5LifecycleManager
         params.setValue( dd, av );
       }
     }
-    return new MbRegisterCfg( regNo, kind, params );
+
+    MbConverterCfg convCfg = null; // FIXME null!
+
+    return new MbRegisterCfg( regNo, kind, params, convCfg );
   }
 
   // ------------------------------------------------------------------------------------

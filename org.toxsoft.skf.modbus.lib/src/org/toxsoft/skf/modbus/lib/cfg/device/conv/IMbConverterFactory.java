@@ -1,6 +1,8 @@
-package org.toxsoft.skf.modbus.lib.devel;
+package org.toxsoft.skf.modbus.lib.cfg.device.conv;
 
-import org.toxsoft.core.tslib.bricks.strid.*;
+import org.toxsoft.core.tslib.av.*;
+import org.toxsoft.core.tslib.av.metainfo.*;
+import org.toxsoft.core.tslib.bricks.strid.coll.*;
 import org.toxsoft.core.tslib.bricks.validator.*;
 import org.toxsoft.core.tslib.utils.errors.*;
 import org.toxsoft.skf.modbus.lib.cfg.device.*;
@@ -10,8 +12,28 @@ import org.toxsoft.skf.modbus.lib.cfg.device.*;
  *
  * @author hazard157
  */
-public interface IMbConverterFactory
-    extends IStridableParameterized {
+public interface IMbConverterFactory {
+
+  /**
+   * Returns the converter type enum constant for which this factory is designed.
+   *
+   * @return {@link EMbConverterType} - converter type
+   */
+  EMbConverterType type();
+
+  /**
+   * Returns atomic type of the values converted by the {@link IMbConverter} created with this factory.
+   *
+   * @return {@link EAtomicType} - atomic type of the converted values
+   */
+  EAtomicType valueAtomicType();
+
+  /**
+   * Returns the definitions of the possible options for converter configuration.
+   *
+   * @return {@link IStridablesList} - list of converter creation options
+   */
+  IStridablesList<IDataDef> listOptions();
 
   /**
    * Determines if this type of converter may be created for the specified register.

@@ -4,6 +4,7 @@ import static org.toxsoft.core.tslib.av.metainfo.IAvMetaConstants.*;
 import static org.toxsoft.skf.modbus.lib.cfg.device.IMbDeviceCfgConstants.*;
 import static org.toxsoft.skf.modbus.lib.mbspec.IModbusSpecificationConstants.*;
 
+import org.toxsoft.core.tslib.av.*;
 import org.toxsoft.core.tslib.av.opset.*;
 import org.toxsoft.core.tslib.av.opset.impl.*;
 import org.toxsoft.core.tslib.av.utils.*;
@@ -16,6 +17,7 @@ import org.toxsoft.core.tslib.bricks.validator.impl.*;
 import org.toxsoft.core.tslib.coll.primtypes.*;
 import org.toxsoft.core.tslib.coll.primtypes.impl.*;
 import org.toxsoft.core.tslib.utils.errors.*;
+import org.toxsoft.skf.modbus.lib.cfg.device.conv.*;
 import org.toxsoft.skf.modbus.lib.mbspec.*;
 
 /**
@@ -35,8 +37,9 @@ import org.toxsoft.skf.modbus.lib.mbspec.*;
  * @param regNo int - starting number of the register
  * @param kind {@link EModbusRegisterKind} - the kind of register as specified in the MODBUS specification
  * @param params {@link IOptionSet} - additional options listed in {@link IMbDeviceCfgConstants}
+ * @param converterCfg {@link MbConverterCfg} - data to create converter of raw register words to/from atomic value
  */
-public record MbRegisterCfg ( int regNo, EModbusRegisterKind kind, IOptionSet params )
+public record MbRegisterCfg ( int regNo, EModbusRegisterKind kind, IOptionSet params, MbConverterCfg converterCfg )
     implements IParameterized {
 
   /**
@@ -52,6 +55,8 @@ public record MbRegisterCfg ( int regNo, EModbusRegisterKind kind, IOptionSet pa
           EModbusRegisterKind.KEEPER.write( aSw, aEntity.kind );
           aSw.writeSeparatorChar();
           OptionSetKeeper.KEEPER.write( aSw, aEntity.params );
+          aSw.writeSeparatorChar();
+          MbConverterCfg.KEEPER.write( aSw, aEntity.converterCfg() );
         }
 
         @Override
@@ -61,7 +66,9 @@ public record MbRegisterCfg ( int regNo, EModbusRegisterKind kind, IOptionSet pa
           EModbusRegisterKind kind = EModbusRegisterKind.KEEPER.read( aSr );
           aSr.ensureSeparatorChar();
           IOptionSet params = OptionSetKeeper.KEEPER.read( aSr );
-          return new MbRegisterCfg( regNo, kind, params );
+          aSr.ensureSeparatorChar();
+          MbConverterCfg convCfg = MbConverterCfg.KEEPER.read( aSr );
+          return new MbRegisterCfg( regNo, kind, params, convCfg );
         }
       };
 
@@ -71,14 +78,17 @@ public record MbRegisterCfg ( int regNo, EModbusRegisterKind kind, IOptionSet pa
    * @param regNo int - starting number of the register
    * @param kind {@link EModbusRegisterKind} - the kind of register as specified in the MODBUS specification
    * @param params {@link IOptionSet} - optional parameters
+   * @param converterCfg {@link MbConverterCfg} - data to create converter of raw register words to/from atomic value
    * @throws TsNullArgumentRtException any argument = <code>null</code>
-   * @throws TsValidationFailedRtException failed {@link #canCreate(int, EModbusRegisterKind, IOptionSet)}
+   * @throws TsValidationFailedRtException failed
+   *           {@link #canCreate(int, EModbusRegisterKind, IOptionSet, MbConverterCfg)}
    */
-  public MbRegisterCfg( int regNo, EModbusRegisterKind kind, IOptionSet params ) {
-    TsValidationFailedRtException.checkError( canCreate( regNo, kind, params ) );
+  public MbRegisterCfg( int regNo, EModbusRegisterKind kind, IOptionSet params, MbConverterCfg converterCfg ) {
+    TsValidationFailedRtException.checkError( canCreate( regNo, kind, params, converterCfg ) );
     this.regNo = regNo;
     this.kind = kind;
     this.params = new OptionSet( params );
+    this.converterCfg = converterCfg;
   }
 
   /**
@@ -87,20 +97,40 @@ public record MbRegisterCfg ( int regNo, EModbusRegisterKind kind, IOptionSet pa
    * @param regNo int - starting number of the register
    * @param kind {@link EModbusRegisterKind} - the kind of register as specified in the MODBUS specification
    * @param params {@link IOptionSet} - optional parameters
+   * @param converterCfg {@link MbConverterCfg} - data to create converter of raw register words to/from atomic value
    * @return {@link ValidationResult} - the check result
    */
-  public static ValidationResult canCreate( int regNo, EModbusRegisterKind kind, IOptionSet params ) {
+  public static ValidationResult canCreate( int regNo, EModbusRegisterKind kind, IOptionSet params,
+      MbConverterCfg converterCfg ) {
     TsNullArgumentRtException.checkNulls( kind, params );
     ValidationResult vr = validateMbAddress( regNo );
     if( !vr.isError() ) {
       vr = ValidationResult.firstNonOk( vr, NameStringAvValidator.VALIDATOR.validate( DDEF_NAME.getValue( params ) ) );
     }
+
+    // TODO check registers pool length >= 1 and not too big
+
+    // TODO add checks if converter configuration is applicable to register
+
+    // TODO somewhere in MbDeviceCfg or it's builder registers pools intersection must be checked
+
     return vr;
   }
 
   // ------------------------------------------------------------------------------------
   // Configuration options as a separate method
   //
+
+  /**
+   * Returns the atomic type of the logical register value when converted to {@link IAtomicValue}.
+   * <p>
+   * Derived from {@link #converterCfg()} via the converter factory {@link IMbConverterFactory#valueAtomicType()}.
+   *
+   * @return {@link EAtomicType} - register value atomic type
+   */
+  public EAtomicType valueType() {
+    return converterCfg.type().factory().valueAtomicType();
+  }
 
   /**
    * Returns value of the option {@link IMbDeviceCfgConstants#OPDEF_MB_REG_POOL_LENGTH}.

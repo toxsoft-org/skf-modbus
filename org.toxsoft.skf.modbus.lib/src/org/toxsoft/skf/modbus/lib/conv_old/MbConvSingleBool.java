@@ -1,4 +1,4 @@
-package org.toxsoft.skf.modbus.lib.devel;
+package org.toxsoft.skf.modbus.lib.conv_old;
 
 import static org.toxsoft.core.tslib.av.metainfo.IAvMetaConstants.*;
 import static org.toxsoft.skf.modbus.lib.ISkfModbusLibConstants.*;
@@ -7,6 +7,8 @@ import org.toxsoft.core.tslib.av.*;
 import org.toxsoft.core.tslib.av.opset.impl.*;
 import org.toxsoft.core.tslib.bricks.validator.*;
 import org.toxsoft.skf.modbus.lib.cfg.device.*;
+import org.toxsoft.skf.modbus.lib.cfg.device.conv.*;
+import org.toxsoft.skf.modbus.lib.conv.*;
 import org.toxsoft.skf.modbus.lib.mbspec.*;
 
 /**
