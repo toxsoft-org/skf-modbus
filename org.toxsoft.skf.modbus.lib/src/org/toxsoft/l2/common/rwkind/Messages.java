@@ -1,4 +1,4 @@
-package org.toxsoft.skf.modbus.lib.cfg.rwkind;
+package org.toxsoft.l2.common.rwkind;
 
 import java.util.*;
 

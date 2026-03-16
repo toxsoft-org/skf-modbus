@@ -10,7 +10,6 @@ Export-Package: org.toxsoft.skf.modbus.lib,
  org.toxsoft.skf.modbus.lib.cfg.bridge.simple,
  org.toxsoft.skf.modbus.lib.cfg.device,
  org.toxsoft.skf.modbus.lib.cfg.device.conv,
- org.toxsoft.skf.modbus.lib.cfg.rwkind,
  org.toxsoft.skf.modbus.lib.l10n,
  org.toxsoft.skf.modbus.lib.mbspec
 Require-Bundle: org.toxsoft.core.tslib,

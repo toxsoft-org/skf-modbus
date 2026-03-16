@@ -1,6 +1,6 @@
-package org.toxsoft.skf.modbus.lib.cfg.rwkind;
+package org.toxsoft.l2.common.rwkind;
 
-import static org.toxsoft.skf.modbus.lib.cfg.rwkind.ISkResources.*;
+import static org.toxsoft.l2.common.rwkind.ISkResources.*;
 
 import org.toxsoft.core.tslib.bricks.keeper.*;
 import org.toxsoft.core.tslib.bricks.keeper.std.*;
