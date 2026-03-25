@@ -14,7 +14,7 @@ import org.toxsoft.skf.modbus.lib.mbspec.*;
 /**
  * The types of converter of logical register raw words to {@link IAtomicValue}.
  *
- * @author AUTHOR_NAME
+ * @author jhazard157
  */
 public enum EMbConverterType
     implements IStridable {

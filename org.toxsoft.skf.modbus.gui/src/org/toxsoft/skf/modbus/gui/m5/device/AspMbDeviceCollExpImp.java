@@ -102,7 +102,8 @@ class AspMbDeviceCollExpImp
     }
     catch( Exception ex ) {
       LoggerUtils.errorLogger().error( ex );
-      TsDialogUtils.error( getShell(), FMT_ERR_WRITING_MODBUS_DEV_CFG_COLL_FILE, ex.getLocalizedMessage() ); //
+      TsDialogUtils.error( getShell(), FMT_ERR_WRITING_MODBUS_DEV_CFG_COLL_FILE, file.getAbsolutePath(),
+          ex.getLocalizedMessage() );
       return;
     }
     TsDialogUtils.info( getShell(), FMT_MB_DEV_CFGS_EXPORTED_TO_FILE, Integer.valueOf( devRegistry.list().size() ),

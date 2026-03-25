@@ -102,7 +102,7 @@ public record MbRegisterCfg ( int regNo, EModbusRegisterKind kind, IOptionSet pa
    */
   public static ValidationResult canCreate( int regNo, EModbusRegisterKind kind, IOptionSet params,
       MbConverterCfg converterCfg ) {
-    TsNullArgumentRtException.checkNulls( kind, params );
+    TsNullArgumentRtException.checkNulls( kind, params, converterCfg );
     ValidationResult vr = validateMbAddress( regNo );
     if( !vr.isError() ) {
       vr = ValidationResult.firstNonOk( vr, NameStringAvValidator.VALIDATOR.validate( DDEF_NAME.getValue( params ) ) );

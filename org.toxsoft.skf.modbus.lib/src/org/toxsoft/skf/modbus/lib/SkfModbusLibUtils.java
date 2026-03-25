@@ -1,7 +1,7 @@
 package org.toxsoft.skf.modbus.lib;
 
+import org.toxsoft.core.tslib.utils.rwkind.*;
 import org.toxsoft.core.tslib.utils.valobj.*;
-import org.toxsoft.l2.common.rwkind.*;
 import org.toxsoft.skf.modbus.lib.mbspec.*;
 
 /**

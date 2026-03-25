@@ -8,7 +8,7 @@ import org.toxsoft.core.tslib.bricks.strid.*;
 import org.toxsoft.core.tslib.bricks.strid.coll.*;
 import org.toxsoft.core.tslib.bricks.strid.coll.impl.*;
 import org.toxsoft.core.tslib.utils.errors.*;
-import org.toxsoft.l2.common.rwkind.*;
+import org.toxsoft.core.tslib.utils.rwkind.*;
 
 /**
  * Kind of the MODBUS registers as specified in the standard.
