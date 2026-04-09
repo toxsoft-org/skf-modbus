@@ -52,7 +52,7 @@ public class SkideUnitModbusDeviceRegistry
       devRegistry.fillRegistry( slDevCfgs );
     }
     catch( Exception ex ) {
-      LoggerUtils.errorLogger().error( ex );
+      LoggerUtils.error( ex );
     }
     // listen to changes in registry and save to storage
     devRegistry.genericChangeEventer().addListener( aSource -> //
